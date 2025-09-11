@@ -6,9 +6,9 @@ import { Header } from "@/components/layout/header";
 import { PromoBanner } from "@/components/promo-banner";
 import { CategoryNav } from "@/components/category-nav";
 import { ContactSection } from "@/components/contact-section";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { IconName, iconMap } from "@/components/icon-map";
+import { Separator } from "@/components/ui/separator";
 
 type MenuItem = {
   name: string;
@@ -20,6 +20,7 @@ type MenuItem = {
     hint: string;
   };
   tags?: string[];
+  portion?: string;
 };
 
 export type MenuCategory = {
@@ -68,17 +69,20 @@ const menuData: MenuCategory[] = [
         name: "Maguro (Atún)",
         description: "3 piezas de atún aleta azul fresco de alta calidad.",
         price: "12",
+        portion: "3 pz"
       },
       {
         name: "Sake (Salmón)",
         description: "3 piezas de rico y graso salmón del Atlántico.",
         price: "9",
         tags: ["Popular"],
+        portion: "3 pz"
       },
       {
         name: "Hamachi (Jurel)",
         description: "3 piezas de delicado y suave jurel.",
         price: "11",
+        portion: "3 pz"
       },
       {
         name: "Rollo Dragón",
@@ -126,6 +130,7 @@ const menuData: MenuCategory[] = [
         name: "Bistec Wagyu",
         description: "Wagyu A5 de Kagoshima, servido con wasabi y sal de roca.",
         price: "55",
+        portion: "150g"
       },
       {
         name: "Bacalao Negro con Miso",
@@ -174,59 +179,55 @@ export default function Home() {
         <CategoryNav categories={menuData} />
 
         <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          {menuData.map((category) => {
-            const Icon = iconMap[category.icon];
-            return (
-              <section
-                key={category.id}
-                id={category.id}
-                className="mb-16 scroll-mt-32"
-                aria-labelledby={`${category.id}-heading`}
+          {menuData.map((category) => (
+            <section
+              key={category.id}
+              id={category.id}
+              className="mb-16 scroll-mt-24"
+              aria-labelledby={`${category.id}-heading`}
+            >
+              <h2
+                id={`${category.id}-heading`}
+                className="mb-8 text-3xl font-bold tracking-tight sm:text-4xl"
               >
-                <h2 id={`${category.id}-heading`} className="mb-8 text-3xl font-bold tracking-tight sm:text-4xl">
-                  {category.name}
-                </h2>
-                <div className="grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-2">
-                  {category.items.map((item) => (
-                    <Card key={item.name} className="flex flex-col overflow-hidden bg-card/50 transition-shadow duration-300 hover:shadow-primary/20 hover:shadow-lg">
-                      <div className="flex-grow">
-                        <CardHeader className="flex flex-row items-start justify-between pb-4">
-                          <CardTitle className="text-xl font-medium">
-                            {item.name}
-                          </CardTitle>
-                          <p className="text-xl font-semibold text-primary">
-                            ${item.price}
-                          </p>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-muted-foreground">
-                            {item.description}
-                          </p>
-                          {item.tags && (
-                             <div className="mt-4 flex flex-wrap gap-2">
-                              {item.tags.map(tag => <Badge key={tag} variant="secondary">{tag}</Badge>)}
-                            </div>
-                          )}
-                        </CardContent>
-                      </div>
-                      {item.image && (
-                        <div className="aspect-video w-full overflow-hidden">
-                          <Image
-                            src={item.image.url}
-                            alt={item.name}
-                            width={600}
-                            height={400}
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            data-ai-hint={item.image.hint}
-                          />
+                {category.name}
+              </h2>
+              <div className="flex flex-col">
+                {category.items.map((item, index) => (
+                  <div key={item.name}>
+                    <div className="py-6">
+                      {item.tags && (
+                        <div className="mb-2 flex flex-wrap gap-2">
+                          {item.tags.map((tag) => (
+                            <Badge key={tag} variant="secondary">
+                              {tag === "Popular" ? "Nuevo" : tag}
+                            </Badge>
+                          ))}
                         </div>
                       )}
-                    </Card>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
+                      <div className="flex items-start justify-between">
+                        <h3 className="text-xl font-semibold tracking-tight">
+                          {item.name}
+                        </h3>
+                        {item.portion && (
+                          <p className="text-sm text-muted-foreground">
+                            {item.portion}
+                          </p>
+                        )}
+                      </div>
+                      <p className="mt-1 text-muted-foreground">
+                        {item.description}
+                      </p>
+                      <p className="mt-2 text-lg font-semibold text-primary">
+                        ${item.price}
+                      </p>
+                    </div>
+                    {index < category.items.length - 1 && <Separator />}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
         <ContactSection />
       </main>
