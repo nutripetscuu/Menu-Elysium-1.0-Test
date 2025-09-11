@@ -214,12 +214,12 @@ export default function Home() {
                           ${item.price}
                         </p>
                       </div>
-                      <div className="flex items-start justify-between">
-                        <p className="mt-1 text-muted-foreground">
+                      <div className="mt-1 flex flex-col">
+                        <p className="text-muted-foreground">
                           {item.description}
                         </p>
                         {item.portion && (
-                          <p className="text-sm text-muted-foreground">
+                          <p className="mt-1 text-sm text-muted-foreground">
                             {item.portion}
                           </p>
                         )}
