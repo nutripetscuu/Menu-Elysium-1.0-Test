@@ -21,11 +21,12 @@ export function PromoBanner() {
       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-foreground">
         <div className="max-w-2xl">
           <h1 className="text-xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-2xl md:text-3xl">
-            Degustación de Sake de Temporada
+            Sake
           </h1>
           <p className="mt-1 text-xs text-gray-200 drop-shadow-sm md:text-sm">
-            Descubre nuestra selección curada de sake premium.
+            Descubre
           </p>
+          <Button className="mt-4" size="sm">Ver más</Button>
         </div>
       </div>
     </section>
