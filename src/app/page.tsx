@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import { Fish, Beef, GlassWater, UtensilsCrossed, Soup, Leaf } from "lucide-react";
@@ -209,18 +210,20 @@ export default function Home() {
                         <h3 className="text-xl font-semibold tracking-tight">
                           {item.name}
                         </h3>
+                        <p className="text-lg font-semibold text-primary">
+                          ${item.price}
+                        </p>
+                      </div>
+                      <div className="flex items-start justify-between">
+                        <p className="mt-1 text-muted-foreground">
+                          {item.description}
+                        </p>
                         {item.portion && (
                           <p className="text-sm text-muted-foreground">
                             {item.portion}
                           </p>
                         )}
                       </div>
-                      <p className="mt-1 text-muted-foreground">
-                        {item.description}
-                      </p>
-                      <p className="mt-2 text-lg font-semibold text-primary">
-                        ${item.price}
-                      </p>
                     </div>
                     {index < category.items.length - 1 && <Separator />}
                   </div>
