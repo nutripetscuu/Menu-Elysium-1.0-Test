@@ -6,7 +6,7 @@ export function PromoBanner() {
   const promoImage = PlaceHolderImages.find(p => p.id === 'promo-banner');
 
   return (
-    <section className="relative h-[100px] w-full md:h-[120px]">
+    <section className="relative h-[50px] w-full md:h-[60px]">
       {promoImage && (
         <Image
           src={promoImage.imageUrl}
@@ -20,10 +20,10 @@ export function PromoBanner() {
       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
       <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center text-foreground">
         <div className="max-w-2xl">
-          <h1 className="text-2xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-3xl md:text-4xl">
+          <h1 className="text-xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-2xl md:text-3xl">
             Degustación de Sake de Temporada
           </h1>
-          <p className="mt-2 text-sm text-gray-200 drop-shadow-sm md:text-base">
+          <p className="mt-1 text-xs text-gray-200 drop-shadow-sm md:text-sm">
             Descubre nuestra selección curada de sake premium.
           </p>
         </div>
