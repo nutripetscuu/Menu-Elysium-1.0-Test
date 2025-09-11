@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sheet";
 import type { MenuCategory } from "@/lib/menu-data";
 import { iconMap } from "@/components/icon-map";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface HeaderProps {
   categories: MenuCategory[];
@@ -21,11 +22,12 @@ interface HeaderProps {
 
 export function Header({ categories }: HeaderProps) {
   const pathname = usePathname();
+  const isMobile = useIsMobile();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <div className="md:hidden">
+        {isMobile ? (
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
@@ -65,7 +67,18 @@ export function Header({ categories }: HeaderProps) {
               </nav>
             </SheetContent>
           </Sheet>
-        </div>
+        ) : (
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2 text-sm">
+                <Phone className="h-4 w-4 text-primary" />
+                <span>(123) 456-7890</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+                <MapPin className="h-4 w-4 text-primary" />
+                <span>123 Calle Culinaria, Ciudad Foodie</span>
+            </div>
+          </div>
+        )}
 
         <Link href="/menu/appetizers" className="flex items-center gap-2 md:absolute md:left-1/2 md:-translate-x-1/2">
           <span className="text-xl font-bold tracking-tight text-primary">
@@ -73,17 +86,9 @@ export function Header({ categories }: HeaderProps) {
           </span>
           <span className="text-xl font-medium">Menú</span>
         </Link>
+        
+        {isMobile ? <div className="w-8" /> : null}
 
-        <div className="hidden items-center gap-6 md:flex">
-          <div className="flex items-center gap-2 text-sm">
-            <Phone className="h-4 w-4 text-primary" />
-            <span>(123) 456-7890</span>
-          </div>
-          <div className="flex items-center gap-2 text-sm">
-            <MapPin className="h-4 w-4 text-primary" />
-            <span>123 Calle Culinaria, Ciudad Foodie</span>
-          </div>
-        </div>
       </div>
     </header>
   );
