@@ -24,7 +24,7 @@ export function CategoryNav({ categories }: CategoryNavProps) {
 
   return (
     <nav className="sticky top-16 z-30 border-b bg-background/95 backdrop-blur">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 py-2 sm:px-6 lg:px-8">
         <Carousel opts={{ align: "start", dragFree: true }}>
           <CarouselContent className="-ml-2">
             {categories.map((category, index) => {
@@ -37,7 +37,7 @@ export function CategoryNav({ categories }: CategoryNavProps) {
                   <Link href={`#${category.id}`} passHref>
                     <Button
                       variant="ghost"
-                      size="sm"
+                      size="lg"
                       className={cn(
                         "shrink-0 gap-2 transition-colors",
                         activeId === category.id &&
@@ -45,7 +45,7 @@ export function CategoryNav({ categories }: CategoryNavProps) {
                       )}
                       aria-current={activeId === category.id ? "true" : "false"}
                     >
-                      <Icon className="h-4 w-4" />
+                      <Icon className="h-5 w-5" />
                       {category.name}
                     </Button>
                   </Link>
