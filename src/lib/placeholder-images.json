@@ -19,12 +19,6 @@
       "imageHint": "tuna sushi"
     },
     {
-      "id": "dragon-roll-1",
-      "description": "A beautifully plated dragon roll sushi.",
-      "imageUrl": "https://picsum.photos/seed/dragon-roll-1/600/400",
-      "imageHint": "dragon roll"
-    },
-    {
       "id": "tonkotsu-ramen-1",
       "description": "A steaming bowl of tonkotsu ramen.",
       "imageUrl": "https://picsum.photos/seed/tonkotsu-ramen-1/600/400",

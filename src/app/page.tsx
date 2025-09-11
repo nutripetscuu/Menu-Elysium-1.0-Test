@@ -86,7 +86,6 @@ const menuData: MenuCategory[] = [
         name: "Dragon Roll",
         description: "Eel and cucumber topped with avocado and tobiko.",
         price: "16",
-        image: { id: "dragon-roll-1", url: "https://picsum.photos/seed/dragon-roll-1/600/400", hint: "dragon roll" },
       },
     ],
   },
