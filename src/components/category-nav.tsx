@@ -6,7 +6,6 @@ import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { MenuCategory } from "@/app/page";
-import { iconMap } from "./icon-map";
 import {
   Carousel,
   CarouselContent,
@@ -27,24 +26,22 @@ export function CategoryNav({ categories }: CategoryNavProps) {
       <div className="container mx-auto px-4 py-2 sm:px-6 lg:px-8">
         <Carousel opts={{ align: "start", dragFree: true }}>
           <CarouselContent>
-            {categories.map((category, index) => {
-              const Icon = iconMap[category.icon];
+            {categories.map((category) => {
               return (
                 <CarouselItem
                   key={category.id}
-                  className="basis-auto pr-1"
+                  className="basis-auto"
                 >
                   <Link href={`#${category.id}`} passHref>
                     <Button
                       variant="ghost"
                       className={cn(
-                        "shrink-0 gap-2 transition-colors",
+                        "shrink-0 px-4 py-2 text-base font-medium transition-colors",
                         activeId === category.id &&
                           "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       )}
                       aria-current={activeId === category.id ? "true" : "false"}
                     >
-                      <Icon className="h-5 w-5" />
                       {category.name}
                     </Button>
                   </Link>
