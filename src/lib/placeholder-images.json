@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "promo-banner",
+      "description": "A promotional banner showing a vibrant selection of sushi and sake.",
+      "imageUrl": "https://picsum.photos/seed/kampai-promo/1920/600",
+      "imageHint": "sushi restaurant"
+    },
+    {
+      "id": "edamame-1",
+      "description": "A bowl of steamed edamame with sea salt.",
+      "imageUrl": "https://picsum.photos/seed/edamame-1/600/400",
+      "imageHint": "edamame bowl"
+    },
+    {
+      "id": "tuna-sushi-1",
+      "description": "Close up of fresh tuna sushi pieces.",
+      "imageUrl": "https://picsum.photos/seed/tuna-sushi-1/600/400",
+      "imageHint": "tuna sushi"
+    },
+    {
+      "id": "dragon-roll-1",
+      "description": "A beautifully plated dragon roll sushi.",
+      "imageUrl": "https://picsum.photos/seed/dragon-roll-1/600/400",
+      "imageHint": "dragon roll"
+    },
+    {
+      "id": "tonkotsu-ramen-1",
+      "description": "A steaming bowl of tonkotsu ramen.",
+      "imageUrl": "https://picsum.photos/seed/tonkotsu-ramen-1/600/400",
+      "imageHint": "tonkotsu ramen"
+    },
+    {
+      "id": "wagyu-steak-1",
+      "description": "Grilled A5 wagyu steak, sliced.",
+      "imageUrl": "https://picsum.photos/seed/wagyu-steak-1/600/400",
+      "imageHint": "wagyu steak"
+    }
+  ]
 }
