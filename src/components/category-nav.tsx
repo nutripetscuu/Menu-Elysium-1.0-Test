@@ -24,15 +24,15 @@ export function CategoryNav({ categories }: CategoryNavProps) {
 
   return (
     <nav className="sticky top-16 z-30 border-b bg-background/95 backdrop-blur">
-      <div className="container mx-auto px-4 py-2 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 py-3 sm:px-6 lg:px-8">
         <Carousel opts={{ align: "start", dragFree: true }}>
-          <CarouselContent className="-ml-2">
+          <CarouselContent className="-ml-1">
             {categories.map((category, index) => {
               const Icon = iconMap[category.icon];
               return (
                 <CarouselItem
                   key={category.id}
-                  className="basis-auto pl-2"
+                  className="basis-auto pl-1"
                 >
                   <Link href={`#${category.id}`} passHref>
                     <Button
