@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Phone, MapPin } from "lucide-react";
+import { Menu, Phone, MapPin, CalendarDays, ShoppingBag, Utensils } from "lucide-react";
 import { usePathname } from 'next/navigation';
 
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ import {
 import type { MenuCategory } from "@/lib/menu-data";
 import { iconMap } from "@/components/icon-map";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Separator } from "@/components/ui/separator";
 
 interface HeaderProps {
   categories: MenuCategory[];
@@ -65,6 +66,27 @@ export function Header({ categories }: HeaderProps) {
                   );
                 })}
               </nav>
+              <Separator className="my-4" />
+              <div className="flex flex-col gap-4">
+                 <Button variant="ghost" className="justify-start gap-3 text-lg" asChild>
+                    <Link href="#">
+                        <CalendarDays className="h-5 w-5 text-primary" />
+                        Reservar
+                    </Link>
+                 </Button>
+                 <Button variant="ghost" className="justify-start gap-3 text-lg" asChild>
+                    <Link href="#">
+                        <ShoppingBag className="h-5 w-5 text-primary" />
+                        Ordenar en Línea
+                    </Link>
+                 </Button>
+                 <Button variant="ghost" className="justify-start gap-3 text-lg" asChild>
+                    <Link href="#">
+                        <Utensils className="h-5 w-5 text-primary" />
+                        Uber Eats
+                    </Link>
+                 </Button>
+              </div>
             </SheetContent>
           </Sheet>
         ) : (
