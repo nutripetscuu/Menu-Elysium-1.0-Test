@@ -61,7 +61,7 @@ const menuData: MenuCategory[] = [
   },
   {
     id: "sushi-sashimi",
-    name: "Sushi y Sashimi",
+    name: "Sushi",
     icon: "Fish",
     items: [
       {
