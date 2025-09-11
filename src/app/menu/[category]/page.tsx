@@ -30,7 +30,7 @@ export default function MenuCategoryPage({
       >
         <h2
           id={`${category.id}-heading`}
-          className="mb-8 text-3xl font-bold tracking-tight sm:text-4xl"
+          className="mb-8 text-4xl font-bold tracking-tight sm:text-5xl"
         >
           {category.name}
         </h2>
