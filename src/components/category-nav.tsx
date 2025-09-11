@@ -22,8 +22,8 @@ export function CategoryNav({ categories }: CategoryNavProps) {
   const activeId = useScrollSpy(categoryIds, { offset: 130 });
 
   return (
-    <nav className="sticky top-16 z-30 border-b bg-background/95 backdrop-blur">
-      <div className="container mx-auto px-4 py-2 sm:px-6 lg:px-8">
+    <nav className="sticky top-0 z-30 border-b bg-background/95 backdrop-blur">
+      <div className="container mx-auto px-4 py-3 sm:px-6 lg:px-8">
         <Carousel opts={{ align: "start", dragFree: true }}>
           <CarouselContent>
             {categories.map((category) => {
@@ -36,7 +36,7 @@ export function CategoryNav({ categories }: CategoryNavProps) {
                     <Button
                       variant="ghost"
                       className={cn(
-                        "shrink-0 px-2 py-2 text-base font-medium transition-colors",
+                        "shrink-0 px-2 py-1 text-base font-medium transition-colors",
                         activeId === category.id &&
                           "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       )}
