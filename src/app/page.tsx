@@ -68,7 +68,6 @@ const menuData: MenuCategory[] = [
         name: "Maguro (Tuna)",
         description: "3 pieces of fresh, high-quality bluefin tuna.",
         price: "12",
-        image: { id: "tuna-sushi-1", url: "https://picsum.photos/seed/tuna-sushi-1/600/400", hint: "tuna sushi" },
       },
       {
         name: "Sake (Salmon)",
@@ -99,7 +98,6 @@ const menuData: MenuCategory[] = [
           "Rich pork bone broth, chashu pork, soft-boiled egg, and noodles.",
         price: "18",
         tags: ["Popular"],
-        image: { id: "tonkotsu-ramen-1", url: "https://picsum.photos/seed/tonkotsu-ramen-1/600/400", hint: "tonkotsu ramen" },
       },
       {
         name: "Shoyu Ramen",
@@ -128,7 +126,6 @@ const menuData: MenuCategory[] = [
         name: "Wagyu Steak",
         description: "A5 Kagoshima Wagyu, served with wasabi and rock salt.",
         price: "55",
-        image: { id: "wagyu-steak-1", url: "https://picsum.photos/seed/wagyu-steak-1/600/400", hint: "wagyu steak" },
       },
       {
         name: "Black Cod with Miso",
