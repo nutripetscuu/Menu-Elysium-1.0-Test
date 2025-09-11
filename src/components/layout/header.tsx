@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { Menu, Phone, MapPin } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { usePathname } from 'next/navigation';
+
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -11,7 +12,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import type { MenuCategory } from "@/app/page";
+import type { MenuCategory } from "@/lib/menu-data";
 import { iconMap } from "@/components/icon-map";
 
 interface HeaderProps {
@@ -19,10 +20,12 @@ interface HeaderProps {
 }
 
 export function Header({ categories }: HeaderProps) {
+  const pathname = usePathname();
+
   return (
-    <header className="top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="#" className="flex items-center gap-2">
+        <Link href="/menu/appetizers" className="flex items-center gap-2">
           <span className="text-xl font-bold tracking-tight text-primary">
             Kampai
           </span>
@@ -51,7 +54,7 @@ export function Header({ categories }: HeaderProps) {
             <SheetContent side="left">
               <SheetHeader>
                 <SheetTitle>
-                  <Link href="#" className="flex items-center gap-2">
+                  <Link href="/menu/appetizers" className="flex items-center gap-2">
                     <span className="text-xl font-bold tracking-tight text-primary">
                       Kampai
                     </span>
@@ -62,14 +65,15 @@ export function Header({ categories }: HeaderProps) {
               <nav className="mt-8 flex flex-col gap-4">
                 {categories.map((category) => {
                   const Icon = iconMap[category.icon];
+                  const isActive = pathname === `/menu/${category.id}`;
                   return (
                     <Button
                       key={category.id}
-                      variant="ghost"
+                      variant={isActive ? "default" : "ghost"}
                       className="justify-start gap-3 text-lg"
                       asChild
                     >
-                      <Link href={`#${category.id}`}>
+                      <Link href={`/menu/${category.id}`}>
                         <Icon className="h-5 w-5 text-primary" />
                         {category.name}
                       </Link>

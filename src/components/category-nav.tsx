@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 
-import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { MenuCategory } from "@/app/page";
+import type { MenuCategory } from "@/lib/menu-data";
 import {
   Carousel,
   CarouselContent,
@@ -17,12 +17,10 @@ interface CategoryNavProps {
 }
 
 export function CategoryNav({ categories }: CategoryNavProps) {
-  const categoryIds = categories.map((c) => c.id);
-  // Offset matches the `scroll-mt-24` on the section elements
-  const activeId = useScrollSpy(categoryIds, { offset: 98 });
+  const pathname = usePathname();
 
   return (
-    <nav className="sticky top-[65px] z-30 border-b bg-background/95 py-2 backdrop-blur">
+    <nav className="sticky top-[64px] z-30 border-b bg-background/95 py-3 backdrop-blur">
       <div className="container mx-auto max-w-full px-0">
         <Carousel
           opts={{
@@ -33,22 +31,23 @@ export function CategoryNav({ categories }: CategoryNavProps) {
           }}
           className="w-full"
         >
-          <CarouselContent className="-ml-2">
-            {categories.map((category, index) => {
+          <CarouselContent className="-ml-1">
+            {categories.map((category) => {
+              const isActive = pathname === `/menu/${category.id}`;
               return (
                 <CarouselItem
                   key={category.id}
-                  className="basis-auto pl-2"
+                  className="basis-auto pl-1"
                 >
-                  <Link href={`#${category.id}`} passHref>
+                  <Link href={`/menu/${category.id}`} passHref>
                     <Button
                       variant="ghost"
                       className={cn(
                         "shrink-0 rounded-full px-4 py-1 text-base font-medium transition-colors",
-                        activeId === category.id &&
+                        isActive &&
                           "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
                       )}
-                      aria-current={activeId === category.id ? "true" : "false"}
+                      aria-current={isActive ? "true" : "false"}
                     >
                       {category.name}
                     </Button>
