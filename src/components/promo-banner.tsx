@@ -18,8 +18,8 @@ export function PromoBanner() {
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-      <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-foreground">
-        <div className="max-w-2xl pb-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center text-foreground">
+        <div className="max-w-2xl">
           <h1 className="text-4xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
             Degustación de Sake de Temporada
           </h1>
