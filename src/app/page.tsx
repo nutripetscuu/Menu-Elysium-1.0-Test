@@ -40,7 +40,6 @@ const menuData: MenuCategory[] = [
         description: "Steamed young soybeans with sea salt.",
         price: "6",
         tags: ["V", "GF"],
-        image: { id: "edamame-1", url: "https://picsum.photos/seed/edamame-1/600/400", hint: "edamame bowl" },
       },
       {
         name: "Gyoza",

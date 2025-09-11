@@ -7,12 +7,6 @@
       "imageHint": "sushi restaurant"
     },
     {
-      "id": "edamame-1",
-      "description": "A bowl of steamed edamame with sea salt.",
-      "imageUrl": "https://picsum.photos/seed/edamame-1/600/400",
-      "imageHint": "edamame bowl"
-    },
-    {
       "id": "tuna-sushi-1",
       "description": "Close up of fresh tuna sushi pieces.",
       "imageUrl": "https://picsum.photos/seed/tuna-sushi-1/600/400",
