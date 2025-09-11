@@ -21,13 +21,13 @@ export function PromoBanner() {
       <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-foreground">
         <div className="max-w-2xl pb-10">
           <h1 className="text-4xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
-            Seasonal Sake Tasting
+            Degustación de Sake de Temporada
           </h1>
           <p className="mt-4 text-lg text-gray-200 drop-shadow-sm md:text-xl">
-            Discover our curated selection of premium sake, perfectly paired with our chef's special creations.
+            Descubre nuestra selección curada de sake premium, maridado perfectamente con las creaciones especiales de nuestro chef.
           </p>
           <Button size="lg" className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90">
-            View Pairings
+            Ver Maridajes
           </Button>
         </div>
       </div>

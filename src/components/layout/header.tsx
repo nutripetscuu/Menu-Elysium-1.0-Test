@@ -26,7 +26,7 @@ export function Header({ categories }: HeaderProps) {
           <span className="text-xl font-bold tracking-tight text-primary">
             Kampai
           </span>
-          <span className="text-xl font-medium">Menu</span>
+          <span className="text-xl font-medium">Menú</span>
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
@@ -36,7 +36,7 @@ export function Header({ categories }: HeaderProps) {
           </div>
           <div className="flex items-center gap-2 text-sm">
             <MapPin className="h-4 w-4 text-primary" />
-            <span>123 Culinary Lane, Foodie City</span>
+            <span>123 Calle Culinaria, Ciudad Foodie</span>
           </div>
         </div>
 
@@ -45,7 +45,7 @@ export function Header({ categories }: HeaderProps) {
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
                 <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
+                <span className="sr-only">Abrir menú</span>
               </Button>
             </SheetTrigger>
             <SheetContent side="left">
@@ -55,7 +55,7 @@ export function Header({ categories }: HeaderProps) {
                     <span className="text-xl font-bold tracking-tight text-primary">
                       Kampai
                     </span>
-                    <span className="text-xl font-medium">Menu</span>
+                    <span className="text-xl font-medium">Menú</span>
                   </Link>
                 </SheetTitle>
               </SheetHeader>
