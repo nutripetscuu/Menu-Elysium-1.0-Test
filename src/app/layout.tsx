@@ -8,7 +8,11 @@ import { CategoryNav } from "@/components/category-nav";
 import { ContactSection } from "@/components/contact-section";
 import { PromoBanner } from "@/components/promo-banner";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 export const metadata: Metadata = {
   title: "Menú Kampai",
@@ -21,19 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-MX" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="es-MX" className={`${inter.variable} dark`}>
       <body className="font-body antialiased">
         <div className="flex min-h-screen w-full flex-col">
           <Header categories={menuData} />
