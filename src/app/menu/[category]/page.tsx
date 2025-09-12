@@ -51,7 +51,7 @@ export default function MenuCategoryPage({
                   <h3 className="text-xl font-semibold tracking-tight">
                     {item.name}
                   </h3>
-                  <p className="text-lg font-semibold text-primary">
+                  <p className="text-lg font-semibold" style={{ color: 'hsl(var(--accent))' }}>
                     ${item.price}
                   </p>
                 </div>

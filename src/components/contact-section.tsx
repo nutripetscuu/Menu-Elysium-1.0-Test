@@ -7,7 +7,7 @@ export function ContactSection() {
       <div className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 text-center md:grid-cols-3 md:text-left">
           <div className="flex flex-col items-center md:items-start">
-            <h3 className="text-2xl font-bold tracking-tight text-primary">Kampai</h3>
+            <h3 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--primary)' }}>ELYSIUM</h3>
             <p className="mt-2 text-muted-foreground">Cocina Japonesa Moderna</p>
           </div>
           
@@ -33,7 +33,7 @@ export function ContactSection() {
           </div>
         </div>
         <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Menú Kampai. Todos los derechos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Menú ELYSIUM. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

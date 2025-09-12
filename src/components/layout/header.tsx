@@ -40,10 +40,10 @@ export function Header({ categories }: HeaderProps) {
               <SheetHeader>
                 <SheetTitle>
                   <Link href="/menu/appetizers" className="flex items-center gap-2">
-                    <span className="text-xl font-bold tracking-tight text-primary">
-                      Kampai
+                    <span className="text-xl font-bold tracking-tight text-charcoal-black">
+                      ELYSIUM
                     </span>
-                    <span className="text-xl font-medium">Menú</span>
+                    <span className="text-xl font-medium text-burgundy-wine">Menú</span>
                   </Link>
                 </SheetTitle>
               </SheetHeader>
@@ -103,10 +103,10 @@ export function Header({ categories }: HeaderProps) {
         )}
 
         <Link href="/menu/appetizers" className="flex items-center gap-2 md:absolute md:left-1/2 md:-translate-x-1/2">
-          <span className="text-xl font-bold tracking-tight text-primary">
-            Kampai
+          <span className="text-xl font-bold tracking-tight text-charcoal-black">
+            ELYSIUM
           </span>
-          <span className="text-xl font-medium">Menú</span>
+          <span className="text-xl font-medium" style={{ color: 'var(--primary)' }}>Menú</span>
         </Link>
         
         {isMobile ? <div className="w-8" /> : null}

@@ -15,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Menú Kampai",
+  title: "Menú ELYSIUM",
   description: "Un menú moderno para un restaurante japonés.",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-MX" className={`${inter.variable} dark`}>
+    <html lang="es-MX" className={`${inter.variable}`}>
       <body className="font-body antialiased">
         <div className="flex min-h-screen w-full flex-col">
           <Header categories={menuData} />
