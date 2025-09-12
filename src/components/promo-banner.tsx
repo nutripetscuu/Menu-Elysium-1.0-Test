@@ -5,7 +5,7 @@ export function PromoBanner() {
   const promoImage = PlaceHolderImages.find(p => p.id === 'promo-banner');
 
   return (
-    <section className="relative h-[250px] w-full md:h-[300px]">
+    <section className="relative h-56 w-full md:h-64">
       {promoImage && (
         <Image
           src={promoImage.imageUrl}
