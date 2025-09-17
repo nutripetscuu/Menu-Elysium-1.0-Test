@@ -18,9 +18,10 @@ import { Separator } from "@/components/ui/separator";
 
 interface HeaderProps {
   categories: MenuCategoryWithItems[];
+  onShowAll?: () => void;
 }
 
-export function Header({ categories }: HeaderProps) {
+export function Header({ categories, onShowAll }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm shadow-sm">
@@ -88,8 +89,8 @@ export function Header({ categories }: HeaderProps) {
         </div>
 
         {/* Mobile-first logo */}
-        <Link
-          href="/"
+        <button
+          onClick={onShowAll}
           className="flex items-center hover:opacity-80 transition-opacity"
         >
           <Image
@@ -99,8 +100,8 @@ export function Header({ categories }: HeaderProps) {
             height={40}
             className="object-contain"
           />
-        </Link>
-        
+        </button>
+
         {/* Mobile spacer */}
         <div className="w-10" />
 

@@ -4,16 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack -p 9002",
-    "dev:vercel": "next dev",
+    "dev:no-turbo": "next dev --port 0",
+    "dev:vercel": "next dev --turbopack",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
     "build": "next build",
+    "build:turbo": "next build --turbopack",
     "build:analyze": "ANALYZE=true npm run build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
-    "postbuild": "echo 'Build completed successfully for Vercel deployment'"
+    "postbuild": "echo 'Build completed successfully for Vercel deployment'",
+    "deploy:check": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.14.1",
