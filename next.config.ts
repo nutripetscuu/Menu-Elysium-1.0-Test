@@ -12,8 +12,6 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
   },
-  // Output configuration for Vercel
-  output: 'standalone',
   // Security headers
   async headers() {
     return [
