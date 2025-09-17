@@ -1,44 +1,84 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+
+// Throttle function to limit scroll event frequency
+function throttle<T extends (...args: unknown[]) => void>(
+  func: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timeoutId: NodeJS.Timeout | null = null;
+  let lastExecTime = 0;
+  
+  return (...args: Parameters<T>) => {
+    const currentTime = Date.now();
+    
+    if (currentTime - lastExecTime > delay) {
+      func(...args);
+      lastExecTime = currentTime;
+    } else {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        func(...args);
+        lastExecTime = Date.now();
+      }, delay - (currentTime - lastExecTime));
+    }
+  };
+}
 
 export function useScrollSpy(
   ids: string[],
-  options: { offset?: number } = {}
+  options: { offset?: number; throttleMs?: number } = {}
 ) {
   const [activeId, setActiveId] = useState<string | null>(null);
-  const { offset = 0 } = options;
+  const { offset = 200, throttleMs = 100 } = options;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
+  const handleScroll = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    
+    const scrollPosition = window.scrollY + offset;
+    let currentActiveId: string | null = null;
+    
+    // Find the section that is currently most visible
+    for (let i = 0; i < ids.length; i++) {
+      const id = ids[i];
+      const element = document.getElementById(id);
       
-      let currentActiveId: string | null = null;
-      
-      // Find the last section that is above the offset line
-      for (const id of ids) {
-        const element = document.getElementById(id);
-        if (element) {
-          if (element.offsetTop <= scrollPosition + offset) {
-            currentActiveId = id;
-          } else {
-            break;
-          }
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + window.scrollY;
+        const elementBottom = elementTop + rect.height;
+        
+        // Check if the element is in view
+        if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+          currentActiveId = id;
+          break;
+        }
+        
+        // If we're past the element, check if it should still be active
+        if (scrollPosition >= elementTop) {
+          currentActiveId = id;
         }
       }
+    }
 
-      setActiveId(currentActiveId);
-    };
+    setActiveId(currentActiveId);
+  }, [ids, offset]);
 
-    // Initial check in case the user loads the page mid-scroll
+  useEffect(() => {
+    const throttledHandleScroll = throttle(handleScroll, throttleMs);
+
+    // Initial check
     handleScroll();
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    window.addEventListener('resize', throttledHandleScroll, { passive: true });
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', throttledHandleScroll);
+      window.removeEventListener('resize', throttledHandleScroll);
     };
-  }, [ids, offset]); // Re-run effect if ids or offset change
+  }, [handleScroll, throttleMs]);
 
   return activeId;
 }

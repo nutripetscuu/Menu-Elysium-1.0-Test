@@ -1,4 +1,4 @@
-import { Fish, Beef, GlassWater, UtensilsCrossed, Soup, Leaf, type LucideIcon } from "lucide-react";
+import { Fish, Beef, GlassWater, UtensilsCrossed, Soup, Leaf, Coffee, Snowflake, Mountain, Droplets, Sandwich, Salad, Slice, Users, Cake } from "lucide-react";
 
 export const iconMap = {
   Fish,
@@ -7,6 +7,15 @@ export const iconMap = {
   UtensilsCrossed,
   Soup,
   Leaf,
+  Coffee,
+  Snowflake,
+  Mountain,
+  Droplets,
+  Sandwich,
+  Salad,
+  Slice,
+  Users,
+  Cake,
 };
 
 export type IconName = keyof typeof iconMap;

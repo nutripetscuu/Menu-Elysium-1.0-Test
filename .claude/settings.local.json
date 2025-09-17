@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(taskkill:*)",
+      "Bash(curl:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm run typecheck:*)",
+      "Bash(npm run lint)",
+      "Read(//c/Users/ElBoss/Pictures/Screenshots/**)",
+      "Bash(powershell:*)",
+      "Bash(dir \"C:\\Users\\ElBoss\\Desktop\\Elysium Test1\\studio\\public\\images\")",
+      "Bash(npm run build:*)",
+      "Bash(mkdir:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

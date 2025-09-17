@@ -4,58 +4,73 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 17%;
-    --card: 36 33% 94%;
-    --card-foreground: 0 0% 17%;
-    --popover: 36 33% 94%;
-    --popover-foreground: 0 0% 17%;
-    --primary: 343 31% 42%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 36 33% 94%;
-    --secondary-foreground: 0 0% 17%;
-    --muted: 36 33% 94%;
-    --muted-foreground: 0 0% 41%;
-    --accent: 30 52% 64%;
-    --accent-foreground: 0 0% 17%;
-    --destructive: 0 84.2% 60.2%;
+    /* Light theme - New elegant restaurant palette */
+    --background: 0 0% 100%; /* Pure White #FFFFFF */
+    --foreground: 0 0% 17%; /* Charcoal Black #2C2C2C */
+    --card: 0 0% 100%; /* Pure White */
+    --card-foreground: 0 0% 17%; /* Charcoal Black */
+    --popover: 0 0% 100%; /* Pure White */
+    --popover-foreground: 0 0% 17%; /* Charcoal Black */
+    --primary: 348 33% 43%; /* Deep Burgundy/Wine #8B4A5C */
+    --primary-foreground: 0 0% 100%; /* Pure White text on burgundy */
+    --secondary: 40 21% 95%; /* Warm Beige/Cream #F5F0E8 */
+    --secondary-foreground: 0 0% 17%; /* Charcoal Black */
+    --muted: 40 21% 95%; /* Warm Beige/Cream */
+    --muted-foreground: 0 12% 42%; /* Warm Gray #6B5B5B */
+    --accent: 33 47% 66%; /* Soft Rose Gold #D4A574 */
+    --accent-foreground: 0 0% 17%; /* Charcoal Black */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 343 31% 42%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --border: 0 0% 89%; /* Light gray border */
+    --input: 40 21% 95%; /* Warm Beige input background */
+    --ring: 348 33% 43%; /* Deep Burgundy focus ring */
+    
+    /* Custom restaurant colors */
+    --deep-burgundy: 348 33% 43%; /* Deep Burgundy/Wine #8B4A5C */
+    --charcoal-black: 0 0% 17%; /* Charcoal Black #2C2C2C */
+    --warm-beige: 40 21% 95%; /* Warm Beige/Cream #F5F0E8 */
+    --soft-rose-gold: 33 47% 66%; /* Soft Rose Gold #D4A574 */
+    --muted-coral: 15 26% 67%; /* Muted Coral #C89B8B */
+    --warm-gray: 0 12% 42%; /* Warm Gray #6B5B5B */
+    
+    /* Chart colors */
+    --chart-1: 348 33% 43%; /* Deep Burgundy */
+    --chart-2: 33 47% 66%; /* Soft Rose Gold */
+    --chart-3: 15 26% 67%; /* Muted Coral */
+    --chart-4: 0 12% 42%; /* Warm Gray */
+    --chart-5: 0 0% 17%; /* Charcoal Black */
+    --radius: 0.75rem; /* Slightly more rounded for elegance */
   }
  
   .dark {
-    --background: 0 0% 17%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 20%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 17%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 343 31% 42%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 24%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 24%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 30 52% 64%;
+    /* Keep dark theme for admin/backend if needed later */
+    --background: 0 0% 7%;
+    --foreground: 0 0% 95%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 348 33% 43%; /* Keep burgundy as primary */
+    --primary-foreground: 0 0% 95%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 33 47% 66%; /* Rose gold accent */
     --accent-foreground: 0 0% 17%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 24%;
-    --input: 0 0% 24%;
-    --ring: 343 31% 42%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 95%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 348 33% 43%;
+    
+    /* Custom restaurant colors for dark mode */
+    --deep-burgundy: 348 40% 50%;
+    --charcoal-black: 0 0% 5%;
+    --warm-beige: 40 15% 85%;
+    --soft-rose-gold: 33 47% 70%;
+    --muted-coral: 15 26% 70%;
+    --warm-gray: 0 0% 65%;
   }
 }
  
@@ -69,6 +84,10 @@
   html {
     scroll-behavior: smooth;
   }
+  html, body {
+    height: 100%;
+    overflow-x: hidden;
+  }
 }
 
 @layer utilities {
@@ -78,5 +97,8 @@
   .scrollbar-hide {
       -ms-overflow-style: none;
       scrollbar-width: none;
+  }
+  .text-shadow-lg {
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
   }
 }

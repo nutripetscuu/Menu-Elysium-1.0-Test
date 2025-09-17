@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-import { Header } from "@/components/layout/header";
-import { menuData } from "@/lib/menu-data";
-import { CategoryNav } from "@/components/category-nav";
-import { ContactSection } from "@/components/contact-section";
-import { PromoBanner } from "@/components/promo-banner";
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-inter',
+  preload: true,
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-dancing-script',
+  preload: true,
 });
 
 export const metadata: Metadata = {
-  title: "Menú ELYSIUM",
-  description: "Un menú moderno para un restaurante japonés.",
+  title: "Menú ELYSIUM | Restaurante Japonés",
+  description: "Descubre nuestra exquisita selección de cocina japonesa auténtica. Sushi, ramen, parrilla y más en un ambiente elegante.",
+  keywords: ["restaurante japonés", "sushi", "ramen", "comida japonesa", "ELYSIUM"],
+  authors: [{ name: "ELYSIUM Restaurant" }],
+  robots: "index, follow",
 };
 
 export default function RootLayout({
@@ -25,17 +31,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es-MX" className={`${inter.variable}`}>
-      <body className="font-body antialiased">
-        <div className="flex min-h-screen w-full flex-col">
-          <Header categories={menuData} />
-          <main className="flex-1">
-            <PromoBanner />
-            <CategoryNav categories={menuData} />
-            {children}
-            <ContactSection />
-          </main>
-        </div>
+    <html lang="es-MX" className={`${inter.variable} ${dancingScript.variable}`} suppressHydrationWarning>
+      <body className="font-body antialiased min-h-screen bg-background text-foreground">
+        {children}
         <Toaster />
       </body>
     </html>

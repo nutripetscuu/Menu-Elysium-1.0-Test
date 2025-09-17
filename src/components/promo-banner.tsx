@@ -1,32 +1,78 @@
-import Image from "next/image";
-import { PlaceHolderImages } from "@/lib/placeholder-images";
+"use client";
+
+import { useEffect, useState } from "react";
+import { BannerCarousel } from "./banner-carousel";
+import { LoadingSpinner } from "./ui/loading-spinner";
+import { HeaderImagesAPI, type BannerImage } from "@/lib/api/header-images";
 
 export function PromoBanner() {
-  const promoImage = PlaceHolderImages.find(p => p.id === 'promo-banner');
+  const [bannerImages, setBannerImages] = useState<BannerImage[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadBannerImages = async () => {
+      try {
+        setLoading(true);
+        const response = await HeaderImagesAPI.getBannerImages();
+
+        if (response.success && response.data && response.data.length > 0) {
+          setBannerImages(response.data);
+          setError(null);
+        } else {
+          // Fallback to static images if database fails
+          console.warn('Using fallback images:', response.error);
+          setBannerImages(HeaderImagesAPI.getFallbackImages());
+          setError(null);
+        }
+      } catch (err) {
+        console.error('Error loading banner images:', err);
+        // Use fallback images on error
+        setBannerImages(HeaderImagesAPI.getFallbackImages());
+        setError(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadBannerImages();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="w-full">
+        <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] bg-gray-100 flex items-center justify-center">
+          <LoadingSpinner />
+        </div>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className="w-full">
+        <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] bg-gray-100 flex items-center justify-center">
+          <div className="text-center text-gray-600">
+            <p className="mb-2">Error loading banner images</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="text-sm text-blue-600 hover:underline"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section className="relative h-56 w-full md:h-64">
-      {promoImage && (
-        <Image
-          src={promoImage.imageUrl}
-          alt={promoImage.description}
-          fill
-          className="object-cover"
-          priority
-          data-ai-hint={promoImage.imageHint}
-        />
-      )}
-      <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
-      <div className="absolute inset-0 flex flex-col items-start justify-center p-4 text-left text-foreground md:p-8">
-        <div className="max-w-2xl">
-            <h1 className="text-xl font-extrabold tracking-tight text-white drop-shadow-md sm:text-2xl md:text-3xl">
-                Sake
-            </h1>
-            <p className="mt-1 text-xs text-gray-200 drop-shadow-sm md:text-sm">
-                Descubre
-            </p>
-        </div>
-      </div>
+    <section className="w-full">
+      <BannerCarousel
+        images={bannerImages}
+        autoPlay={true}
+        autoPlayInterval={5000}
+      />
     </section>
   );
 }

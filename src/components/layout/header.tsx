@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Phone, MapPin, CalendarDays, ShoppingBag, Utensils } from "lucide-react";
-import { usePathname } from 'next/navigation';
+import Image from "next/image";
+import { Menu, CalendarDays, ShoppingBag, Utensils } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -12,104 +12,97 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import type { MenuCategory } from "@/lib/menu-data";
-import { iconMap } from "@/components/icon-map";
-import { useIsMobile } from "@/hooks/use-mobile";
+import type { MenuCategoryWithItems } from "@/lib/types/database";
+import { iconMap, type IconName } from "@/components/icon-map";
 import { Separator } from "@/components/ui/separator";
 
 interface HeaderProps {
-  categories: MenuCategory[];
+  categories: MenuCategoryWithItems[];
 }
 
 export function Header({ categories }: HeaderProps) {
-  const pathname = usePathname();
-  const isMobile = useIsMobile();
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        {isMobile ? (
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm shadow-sm">
+      <div className="flex h-14 items-center justify-between px-4">
+        {/* Mobile menu */}
+        <div>
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="h-10 w-10">
+                <Menu className="h-5 w-5 text-restaurant-charcoal-black" />
                 <span className="sr-only">Abrir menú</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left">
-              <SheetHeader>
+            <SheetContent side="left" className="flex flex-col h-full">
+              <SheetHeader className="flex-shrink-0">
                 <SheetTitle>
-                  <Link href="/menu/appetizers" className="flex items-center gap-2">
-                    <span className="text-xl font-bold tracking-tight text-charcoal-black">
-                      ELYSIUM
-                    </span>
-                    <span className="text-xl font-medium text-burgundy-wine">Menú</span>
+                  <Link href="/" className="flex items-center justify-center">
+                    <Image
+                      src="/images/elysium-logo.svg"
+                      alt="Elysium Café"
+                      width={120}
+                      height={60}
+                      className="object-contain"
+                    />
                   </Link>
                 </SheetTitle>
               </SheetHeader>
-              <nav className="mt-8 flex flex-col gap-4">
-                {categories.map((category) => {
-                  const Icon = iconMap[category.icon];
-                  const isActive = pathname === `/menu/${category.id}`;
-                  return (
-                    <Button
-                      key={category.id}
-                      variant={isActive ? "default" : "ghost"}
-                      className="justify-start gap-3 text-lg"
-                      asChild
-                    >
-                      <Link href={`/menu/${category.id}`}>
-                        <Icon className="h-5 w-5 text-primary" />
-                        {category.name}
-                      </Link>
-                    </Button>
-                  );
-                })}
-              </nav>
-              <Separator className="my-4" />
-              <div className="flex flex-col gap-4">
-                 <Button variant="ghost" className="justify-start gap-3 text-lg" asChild>
-                    <Link href="#">
-                        <CalendarDays className="h-5 w-5 text-primary" />
-                        Reservar
-                    </Link>
-                 </Button>
-                 <Button variant="ghost" className="justify-start gap-3 text-lg" asChild>
-                    <Link href="#">
-                        <ShoppingBag className="h-5 w-5 text-primary" />
-                        Ordenar en Línea
-                    </Link>
-                 </Button>
-                 <Button variant="ghost" className="justify-start gap-3 text-lg" asChild>
-                    <Link href="#">
-                        <Utensils className="h-5 w-5 text-primary" />
-                        Uber Eats
-                    </Link>
-                 </Button>
+              <div className="flex-1 overflow-y-auto">
+                <nav className="mt-8 flex flex-col gap-4">
+                  {categories.map((category) => {
+                    const Icon = iconMap[category.icon as IconName] || iconMap['UtensilsCrossed'];
+                    return (
+                      <Button
+                        key={category.id}
+                        variant="ghost"
+                        className="justify-start gap-3 text-lg font-script"
+                        asChild
+                      >
+                        <Link href={`/menu/${category.id}`}>
+                          <Icon className="h-5 w-5 text-primary" />
+                          {category.name}
+                        </Link>
+                      </Button>
+                    );
+                  })}
+                </nav>
+                <Separator className="my-4" />
+                <div className="flex flex-col gap-4 pb-6">
+                   <Button variant="ghost" className="justify-start gap-3 text-lg" disabled>
+                          <CalendarDays className="h-5 w-5 text-primary" />
+                          Reservar
+                   </Button>
+                   <Button variant="ghost" className="justify-start gap-3 text-lg" disabled>
+                          <ShoppingBag className="h-5 w-5 text-primary" />
+                          Ordenar en Línea
+                   </Button>
+                   <Button variant="ghost" className="justify-start gap-3 text-lg" disabled>
+                          <Utensils className="h-5 w-5 text-primary" />
+                          Uber Eats
+                   </Button>
+                </div>
               </div>
             </SheetContent>
           </Sheet>
-        ) : (
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2 text-sm">
-                <Phone className="h-4 w-4 text-primary" />
-                <span>(123) 456-7890</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm">
-                <MapPin className="h-4 w-4 text-primary" />
-                <span>123 Calle Culinaria, Ciudad Foodie</span>
-            </div>
-          </div>
-        )}
+        </div>
 
-        <Link href="/menu/appetizers" className="flex items-center gap-2 md:absolute md:left-1/2 md:-translate-x-1/2">
-          <span className="text-xl font-bold tracking-tight text-charcoal-black">
-            ELYSIUM
-          </span>
-          <span className="text-xl font-medium" style={{ color: 'var(--primary)' }}>Menú</span>
+        {/* Mobile-first logo */}
+        <Link
+          href="/"
+          className="flex items-center hover:opacity-80 transition-opacity"
+        >
+          <Image
+            src="/images/elysium-logo.svg"
+            alt="Elysium Café"
+            width={100}
+            height={40}
+            className="object-contain"
+          />
         </Link>
         
-        {isMobile ? <div className="w-8" /> : null}
+        {/* Mobile spacer */}
+        <div className="w-10" />
 
       </div>
     </header>
