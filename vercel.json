@@ -1,26 +1,6 @@
 {
   "version": 2,
   "name": "elysium-restaurant-menu",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  },
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
-  },
   "functions": {
     "app/api/**/*.js": {
       "maxDuration": 30
@@ -35,7 +15,7 @@
           "value": "DENY"
         },
         {
-          "key": "X-Content-Type-Options", 
+          "key": "X-Content-Type-Options",
           "value": "nosniff"
         },
         {
