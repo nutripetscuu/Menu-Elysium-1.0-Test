@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { CartProvider } from "@/contexts/cart-context";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -33,8 +34,10 @@ export default function RootLayout({
   return (
     <html lang="es-MX" className={`${inter.variable} ${dancingScript.variable}`} suppressHydrationWarning>
       <body className="font-body antialiased min-h-screen bg-background text-foreground">
-        {children}
-        <Toaster />
+        <CartProvider>
+          {children}
+          <Toaster />
+        </CartProvider>
       </body>
     </html>
   );

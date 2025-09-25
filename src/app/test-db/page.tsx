@@ -132,7 +132,7 @@ export default function TestDbPage() {
           <p className="text-sm">
             <strong>📋 Please check:</strong><br/>
             1. Go to Supabase Dashboard → Settings → API<br/>
-            2. Copy the exact "Project URL"<br/>
+            2. Copy the exact &ldquo;Project URL&rdquo;<br/>
             3. Make sure your project is not paused<br/>
             4. Verify the URL format: https://[project-id].supabase.co
           </p>

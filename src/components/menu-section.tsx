@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { iconMap, type IconName } from "@/components/icon-map";
-import type { MenuCategoryWithItems } from "@/lib/types/database";
+import { ProductModal } from "@/components/product-modal";
+import type { MenuCategoryWithItems, MenuItem } from "@/lib/types/database";
 
 interface MenuSectionProps {
   category: MenuCategoryWithItems;
@@ -11,6 +13,18 @@ interface MenuSectionProps {
 
 export function MenuSection({ category }: MenuSectionProps) {
   const Icon = iconMap[category.icon as IconName] || iconMap['UtensilsCrossed'];
+  const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleItemClick = (item: MenuItem) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedItem(null);
+  };
 
   return (
     <section
@@ -31,7 +45,18 @@ export function MenuSection({ category }: MenuSectionProps) {
       <div className="space-y-4">
         {category.items.map((item) => (
           <div key={item.name} className="group">
-            <div className="bg-white rounded-lg shadow-sm border border-restaurant-warm-beige/30 p-5 hover:shadow-md transition-shadow">
+            <div
+              className="bg-white rounded-lg shadow-sm border border-restaurant-warm-beige/30 p-5 hover:shadow-md transition-all duration-200 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
+              onClick={() => handleItemClick(item)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleItemClick(item);
+                }
+              }}
+            >
               {item.tags && item.tags.length > 0 && (
                 <div className="mb-3 flex flex-wrap gap-2">
                   {item.tags.map((tag) => (
@@ -88,6 +113,13 @@ export function MenuSection({ category }: MenuSectionProps) {
           </div>
         ))}
       </div>
+
+      {/* Product Modal */}
+      <ProductModal
+        item={selectedItem}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </section>
   );
 }

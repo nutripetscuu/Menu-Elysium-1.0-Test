@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Menu, CalendarDays, ShoppingBag, Utensils } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CartIcon } from "@/components/cart-icon";
 import {
   Sheet,
   SheetContent,
@@ -25,9 +26,9 @@ export function Header({ categories, onShowAll }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm shadow-sm">
-      <div className="flex h-14 items-center justify-between px-4">
+      <div className="flex h-14 items-center px-4 relative">
         {/* Mobile menu */}
-        <div>
+        <div className="flex-shrink-0">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="h-10 w-10">
@@ -88,22 +89,26 @@ export function Header({ categories, onShowAll }: HeaderProps) {
           </Sheet>
         </div>
 
-        {/* Mobile-first logo */}
-        <button
-          onClick={onShowAll}
-          className="flex items-center hover:opacity-80 transition-opacity"
-        >
-          <Image
-            src="/images/elysium-logo.svg"
-            alt="Elysium Café"
-            width={100}
-            height={40}
-            className="object-contain"
-          />
-        </button>
+        {/* Centered logo */}
+        <div className="absolute left-1/2 transform -translate-x-1/2">
+          <button
+            onClick={onShowAll}
+            className="flex items-center hover:opacity-80 transition-opacity"
+          >
+            <Image
+              src="/images/elysium-logo.svg"
+              alt="Elysium Café"
+              width={100}
+              height={40}
+              className="object-contain"
+            />
+          </button>
+        </div>
 
-        {/* Mobile spacer */}
-        <div className="w-10" />
+        {/* Cart Icon (right side) */}
+        <div className="flex-shrink-0 ml-auto">
+          <CartIcon />
+        </div>
 
       </div>
     </header>
