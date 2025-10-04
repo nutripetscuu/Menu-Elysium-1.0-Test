@@ -77,14 +77,15 @@ export default function MenuPage() {
       if (hash && menuData.length > 0) {
         const categoryExists = menuData.find(cat => cat.id === hash);
         if (categoryExists && hash !== activeCategory) {
-          handleCategoryChange(hash);
+          setActiveCategory(hash);
+          window.history.replaceState(null, '', `#${hash}`);
         }
       }
     };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [menuData, activeCategory, handleCategoryChange]); // Include all dependencies
+  }, [menuData, activeCategory]); // Removed handleCategoryChange to prevent infinite loop
 
   // Loading state
   if (loading) {

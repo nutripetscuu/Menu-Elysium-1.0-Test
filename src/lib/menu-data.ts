@@ -1,5 +1,6 @@
 
 import type { IconName } from "@/components/icon-map";
+import { MODIFIER_PRESETS } from "./modifiers-data";
 
 type MenuItem = {
   name: string;
@@ -16,6 +17,7 @@ type MenuItem = {
     medium: string;
     grande: string;
   };
+  modifierGroups?: string[]; // Array of modifier group IDs
 };
 
 export type MenuCategory = {
@@ -35,57 +37,68 @@ export const menuData: MenuCategory[] = [
         name: "Espresso",
         description: "Café concentrado de extracción perfecta.",
         price: "40",
+        modifierGroups: [], // No modifiers
       },
       {
         name: "Espresso Doble",
         description: "Doble shot de nuestro espresso premium.",
         price: "45",
+        modifierGroups: [], // No modifiers
       },
       {
         name: "Americano",
         description: "Espresso alargado con agua caliente.",
         price: "55",
+        modifierGroups: MODIFIER_PRESETS.AMERICANO,
       },
       {
         name: "Latte",
         description: "Espresso suave con leche vaporizada y espuma cremosa.",
         price: "65",
+        modifierGroups: MODIFIER_PRESETS.HOT_DRINK_WITH_MILK_AND_ESSENCES,
       },
       {
         name: "Capuccino",
         description: "Espresso con leche vaporizada y espuma densa.",
         price: "65",
+        modifierGroups: MODIFIER_PRESETS.CAPUCCINO,
       },
       {
         name: "Chocolate Caliente",
         description: "Chocolate premium con leche caliente y marshmallows.",
         price: "65",
+        modifierGroups: MODIFIER_PRESETS.HOT_DRINK_WITH_MILK,
       },
       {
         name: "Mocha",
         description: "Espresso con chocolate y leche vaporizada.",
         price: "70",
+        modifierGroups: MODIFIER_PRESETS.HOT_DRINK_WITH_MILK,
       },
       {
         name: "Dirty Chai",
         description: "Chai latte especiado con shot de espresso.",
         price: "75",
+        modifierGroups: MODIFIER_PRESETS.HOT_DRINK_WITH_MILK,
       },
       {
         name: "Taro",
         description: "Bebida cremosa de taro con leche vaporizada.",
         price: "80",
+        modifierGroups: MODIFIER_PRESETS.HOT_DRINK_WITH_MILK,
       },
       {
         name: "Matcha",
         description: "Té verde matcha premium con leche vaporizada.",
         price: "80",
+        modifierGroups: MODIFIER_PRESETS.HOT_DRINK_WITH_MILK,
       },
       {
         name: "Té",
         description: "Selección de tés: Manzanilla, Verde, Menta.",
         price: "50",
         tags: ["Manzanilla", "Verde", "Menta"],
+        modifierGroups: MODIFIER_PRESETS.TEA,
       },
     ],
   },
@@ -98,55 +111,64 @@ export const menuData: MenuCategory[] = [
         name: "Caramelo",
         description: "Frappé cremoso con delicioso sabor a caramelo.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Taro",
         description: "Frappé suave con exótico sabor a taro.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Matcha",
         description: "Frappé refrescante con auténtico té verde matcha.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Vainilla",
         description: "Frappé clásico con rico sabor a vainilla.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Arroz con leche",
         description: "Frappé único con sabor tradicional a arroz con leche.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Fresas con crema",
         description: "Frappé frutal con fresas frescas y crema.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Cookies & Cream",
         description: "Frappé indulgente con galletas y crema.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Chai",
         description: "Frappé especiado con mezcla aromática de chai.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
       {
         name: "Frapuccino",
         description: "Frappé estilo café con espresso y crema batida.",
         price: "M: $80 | G: $85",
-        sizes: { medium: "80", grande: "85" }
+        sizes: { medium: "80", grande: "85" },
+        modifierGroups: MODIFIER_PRESETS.FRAPPE_STANDARD,
       },
     ],
   },
@@ -244,41 +266,48 @@ export const menuData: MenuCategory[] = [
         name: "🍹 Margarita Cero",
         description: "Raspado de fresa y limón",
         price: "M: $65 | G: $70",
-        sizes: { medium: "65", grande: "70" }
+        sizes: { medium: "65", grande: "70" },
+        modifierGroups: MODIFIER_PRESETS.FRESCOS,
       },
       {
         name: "🍹 Trilogía tropical",
         description: "Limonada de fresa, mora azul o mango",
         price: "M: $60 | G: $65",
-        sizes: { medium: "60", grande: "65" }
+        sizes: { medium: "60", grande: "65" },
+        modifierGroups: MODIFIER_PRESETS.FRESCOS,
       },
       {
         name: "🍹 Agua Roja",
         description: "Agua mineral con fresa y limón",
         price: "M: $55 | G: $60",
-        sizes: { medium: "55", grande: "60" }
+        sizes: { medium: "55", grande: "60" },
+        modifierGroups: MODIFIER_PRESETS.FRESCOS,
       },
       {
         name: "Limonada Clásica",
         description: "Limonada tradicional refrescante",
         price: "M: $50 | G: $55",
-        sizes: { medium: "50", grande: "55" }
+        sizes: { medium: "50", grande: "55" },
+        modifierGroups: MODIFIER_PRESETS.FRESCOS,
       },
       {
         name: "Limonada Mineral",
         description: "Limonada con agua mineral gasificada",
         price: "M: $50 | G: $55",
-        sizes: { medium: "50", grande: "55" }
+        sizes: { medium: "50", grande: "55" },
+        modifierGroups: MODIFIER_PRESETS.FRESCOS,
       },
       {
         name: "Agua Natural",
         description: "Agua natural purificada",
-        price: "25"
+        price: "25",
+        modifierGroups: [],
       },
       {
         name: "Agua Mineral",
         description: "Agua mineral gasificada",
-        price: "50"
+        price: "50",
+        modifierGroups: [],
       },
     ],
   },
@@ -291,22 +320,19 @@ export const menuData: MenuCategory[] = [
         name: "OLIMPO",
         description: "Panini de bistec con queso, lechuga, pimientos salteados y salsa a elegir.",
         price: "155",
+        modifierGroups: MODIFIER_PRESETS.OLIMPO,
       },
       {
         name: "ELISEO",
         description: "Panini de pollo con queso, tocino, lechuga y salsa a elegir.",
         price: "110",
+        modifierGroups: MODIFIER_PRESETS.ELISEO,
       },
       {
         name: "CELESTE",
         description: "Panini de jamón con queso, lechuga y salsa a elegir.",
         price: "70",
-      },
-      {
-        name: "SALSAS A ELEGIR:",
-        description: "Chipotle, macha o salsa de la casa",
-        price: "",
-        tags: ["Opciones"]
+        modifierGroups: MODIFIER_PRESETS.CELESTE,
       },
     ],
   },
@@ -319,11 +345,13 @@ export const menuData: MenuCategory[] = [
         name: "CEASAR",
         description: "Lechuga orejona, pollo, queso parmesano, aderezo caesar, acompañada de un pedazo de pan.",
         price: "80",
+        modifierGroups: MODIFIER_PRESETS.CAESAR,
       },
       {
         name: "🥬 ELYSIUM",
         description: "Lechuga orejona, espinaca, fresa, arándanos, queso de cabra y nuez, acompañada de vinagreta de la casa.",
         price: "110",
+        modifierGroups: MODIFIER_PRESETS.ELYSIUM_SALAD,
       },
     ],
   },
@@ -336,22 +364,19 @@ export const menuData: MenuCategory[] = [
         name: "POLLO",
         description: "Costra de pan de la casa con pollo y pimientos salteados, acompañado de salsa de la casa, lechuga fresca y tomates cherry.",
         price: "120",
+        modifierGroups: MODIFIER_PRESETS.POLLO_TOAST,
       },
       {
         name: "AVO TOAST",
         description: "Costra de pan de la casa con una ligera capa de jocoque, aguacate fresco y ajonjolí, coronado con tomates cherry salteados y acompañado de lechuga y tomates cherry frescos.",
         price: "85",
-      },
-      {
-        name: "*Agrega huevo",
-        description: "+ $15",
-        price: "",
-        tags: ["Add-on"]
+        modifierGroups: MODIFIER_PRESETS.AVO_TOAST,
       },
       {
         name: "PERA",
         description: "Costra de pan de la casa con queso crema, láminas de pera y queso panela, acompañado de nueces, un toque de miel, fresas y moras frescas.",
         price: "110",
+        modifierGroups: MODIFIER_PRESETS.PERA_TOAST,
       },
     ],
   },
@@ -364,11 +389,13 @@ export const menuData: MenuCategory[] = [
         name: "PAPAS DE LA CASA",
         description: "Mezcla de camote y papas fritas acompañadas de salsa catsup con chile quebrado.",
         price: "85",
+        modifierGroups: MODIFIER_PRESETS.PAPAS_CASA,
       },
       {
         name: "PAPAS PREPARADAS",
         description: "Papas caseras preparadas con salsa picante, jugo maggi, limón, rielitos y cacahuates.",
         price: "90",
+        modifierGroups: MODIFIER_PRESETS.PAPAS_PREP,
       },
     ],
   },
@@ -381,16 +408,19 @@ export const menuData: MenuCategory[] = [
         name: "PASTEL DE CHOCOLATE",
         description: "Rebanada de pastel de chocolate relleno de queso crema.",
         price: "75",
+        modifierGroups: [],
       },
       {
         name: "PASTEL DE ZANAHORIA",
         description: "Rebanada de pastel de zanahoria relleno de queso crema.",
         price: "85",
+        modifierGroups: [],
       },
       {
         name: "PASTEL DE VAINILLA",
         description: "Rebanada de pastel de vainilla relleno de mermelada de fresa.",
         price: "75",
+        modifierGroups: [],
       },
     ],
   },

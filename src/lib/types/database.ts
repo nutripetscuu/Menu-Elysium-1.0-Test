@@ -1,6 +1,25 @@
 // Database types for Supabase integration
 import { z } from 'zod';
 
+// Modifier Option Schema
+export const ModifierOptionSchema = z.object({
+  id: z.string(),
+  label: z.string().min(1, 'Option label is required'),
+  priceModifier: z.number().default(0), // Additional cost (can be 0, positive, or negative)
+  isDefault: z.boolean().default(false),
+});
+
+// Modifier Group Schema
+export const ModifierGroupSchema = z.object({
+  id: z.string(),
+  name: z.string().min(1, 'Modifier group name is required'),
+  type: z.enum(['single', 'multiple', 'boolean']), // single = radio, multiple = checkbox, boolean = yes/no
+  required: z.boolean().default(false),
+  options: z.array(ModifierOptionSchema),
+  minSelections: z.number().int().min(0).default(0),
+  maxSelections: z.number().int().optional(), // For multiple type
+});
+
 // Zod schemas for validation
 export const CategorySchema = z.object({
   id: z.string().uuid(),
@@ -25,6 +44,7 @@ export const MenuItemSchema = z.object({
     medium: z.string(),
     grande: z.string()
   }).nullable().optional(),
+  modifierGroups: z.array(z.string()).default([]), // Array of modifier group IDs
   position: z.number().int().min(0),
   isAvailable: z.boolean().default(true),
   createdAt: z.string().datetime(),
@@ -40,9 +60,31 @@ export const AdminUserSchema = z.object({
 });
 
 // TypeScript interfaces derived from schemas
+export type ModifierOption = z.infer<typeof ModifierOptionSchema>;
+export type ModifierGroup = z.infer<typeof ModifierGroupSchema>;
 export type Category = z.infer<typeof CategorySchema>;
 export type MenuItem = z.infer<typeof MenuItemSchema>;
 export type AdminUser = z.infer<typeof AdminUserSchema>;
+
+// Customer selection types (for cart/orders)
+export type SelectedModifier = {
+  groupId: string;
+  groupName: string;
+  selectedOptions: {
+    optionId: string;
+    optionLabel: string;
+    priceModifier: number;
+  }[];
+};
+
+export type CartItem = {
+  menuItemId: string;
+  menuItemName: string;
+  basePrice: number;
+  quantity: number;
+  selectedModifiers: SelectedModifier[];
+  totalPrice: number; // basePrice + all modifier prices
+};
 
 // Input types for creating/updating (without generated fields)
 export type CategoryInput = Omit<Category, 'id' | 'createdAt' | 'updatedAt'>;
@@ -126,6 +168,7 @@ export type LegacyMenuItem = {
     medium: string;
     grande: string;
   };
+  modifierGroups?: string[];
 };
 
 // Conversion utilities
@@ -149,6 +192,7 @@ export function convertLegacyToDatabase(legacy: LegacyMenuCategory): {
       tags: item.tags || [],
       portion: item.portion || null,
       sizes: item.sizes || null,
+      modifierGroups: item.modifierGroups || [],
       position: index,
       isAvailable: true,
     })),

@@ -10,7 +10,16 @@ export interface CartItem {
   selectedMilk?: string;
   selectedSugar?: string;
   selectedFlavor?: string;
-  extras: string[];
+  extras?: string[];
+  selectedModifiers?: {
+    groupId: string;
+    groupName: string;
+    selectedOptions: {
+      optionId: string;
+      optionLabel: string;
+      priceModifier: number;
+    }[];
+  }[];
   quantity: number;
   unitPrice: number;
   totalPrice: number;
@@ -40,10 +49,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const existingItemIndex = prevItems.findIndex(item =>
         item.menuItem.id === newItem.menuItem.id &&
         item.selectedSize === newItem.selectedSize &&
-        item.selectedMilk === newItem.selectedMilk &&
-        item.selectedSugar === newItem.selectedSugar &&
-        item.selectedFlavor === newItem.selectedFlavor &&
-        JSON.stringify(item.extras.sort()) === JSON.stringify(newItem.extras.sort())
+        JSON.stringify(item.selectedModifiers || []) === JSON.stringify(newItem.selectedModifiers || [])
       );
 
       if (existingItemIndex >= 0) {

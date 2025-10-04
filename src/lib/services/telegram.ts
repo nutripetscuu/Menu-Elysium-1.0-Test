@@ -81,7 +81,7 @@ class TelegramService {
         message += `   • Sabor: ${item.selectedFlavor}\n`;
       }
 
-      if (item.extras.length > 0) {
+      if (item.extras && item.extras.length > 0) {
         const extraNames: { [key: string]: string } = {
           "extra-shot": "Shot Extra de Café",
           "whipped-cream": "Crema Batida",
@@ -90,6 +90,16 @@ class TelegramService {
         };
         const formattedExtras = item.extras.map(extra => extraNames[extra] || extra).join(", ");
         message += `   • Extras: ${formattedExtras}\n`;
+      }
+
+      if (item.selectedModifiers && item.selectedModifiers.length > 0) {
+        item.selectedModifiers.forEach(modifier => {
+          const optionsText = modifier.selectedOptions.map(opt => {
+            const priceText = opt.priceModifier > 0 ? ` (+$${opt.priceModifier})` : '';
+            return opt.optionLabel + priceText;
+          }).join(", ");
+          message += `   • ${modifier.groupName}: ${optionsText}\n`;
+        });
       }
 
       if (index < items.length - 1) {

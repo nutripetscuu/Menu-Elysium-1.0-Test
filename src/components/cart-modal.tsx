@@ -136,8 +136,17 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
                     {item.selectedFlavor && (
                       <p>Sabor: {item.selectedFlavor}</p>
                     )}
-                    {item.extras.length > 0 && (
+                    {item.extras && item.extras.length > 0 && (
                       <p>Extras: {item.extras.map(extra => EXTRA_NAMES[extra] || extra).join(", ")}</p>
+                    )}
+                    {item.selectedModifiers && item.selectedModifiers.length > 0 && (
+                      <div className="mt-2">
+                        {item.selectedModifiers.map((modifier) => (
+                          <p key={modifier.groupId}>
+                            {modifier.groupName}: {modifier.selectedOptions.map(opt => opt.optionLabel).join(", ")}
+                          </p>
+                        ))}
+                      </div>
                     )}
                   </div>
                 </div>
