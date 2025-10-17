@@ -45,7 +45,7 @@ export default function FeaturesPage() {
 
       {/* QR Code Ordering */}
       <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
-        <div className="container max-w-screen-2xl px-4">
+        <div className="container max-w-screen-2xl mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
@@ -100,7 +100,7 @@ export default function FeaturesPage() {
 
       {/* Analytics Dashboard */}
       <section className="border-t border-[#0B2C4D]/10 py-24">
-        <div className="container max-w-screen-2xl px-4">
+        <div className="container max-w-screen-2xl mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="order-2 lg:order-1 rounded-lg border border-[#0B2C4D]/10 bg-background p-8">
               <div className="aspect-video rounded-lg bg-muted flex items-center justify-center">
@@ -155,7 +155,7 @@ export default function FeaturesPage() {
 
       {/* Menu Management */}
       <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
-        <div className="container max-w-screen-2xl px-4">
+        <div className="container max-w-screen-2xl mx-auto px-4">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div>
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
@@ -210,7 +210,7 @@ export default function FeaturesPage() {
 
       {/* Additional Features Grid */}
       <section className="border-t border-[#0B2C4D]/10 py-24">
-        <div className="container max-w-screen-2xl px-4">
+        <div className="container max-w-screen-2xl mx-auto px-4">
           <div className="mb-16 text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               More Powerful Features
@@ -400,7 +400,7 @@ export default function FeaturesPage() {
 
       {/* Benefits Section */}
       <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
-        <div className="container max-w-screen-2xl px-4">
+        <div className="container max-w-screen-2xl mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               Why Restaurant Owners Love NoWaiter
@@ -446,7 +446,7 @@ export default function FeaturesPage() {
 
       {/* CTA Section */}
       <section className="border-t border-[#0B2C4D]/10 py-24">
-        <div className="container max-w-screen-2xl px-4">
+        <div className="container max-w-screen-2xl mx-auto px-4">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
               Ready to Transform Your Restaurant?

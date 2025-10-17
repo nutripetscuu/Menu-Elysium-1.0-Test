@@ -90,7 +90,7 @@ export default function PricingPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="container max-w-screen-2xl px-6 py-24">
+      <section className="container max-w-screen-2xl mx-auto px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-[#0B2C4D]">
             Simple, Transparent Pricing
@@ -132,7 +132,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="container max-w-screen-2xl px-6 pb-24">
+      <section className="container max-w-screen-2xl mx-auto px-6 pb-24">
         <div className="grid gap-8 lg:grid-cols-3">
           {plans.map((plan) => (
             <Card
@@ -212,7 +212,7 @@ export default function PricingPage() {
 
       {/* FAQ Section */}
       <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
-        <div className="container max-w-screen-2xl px-6">
+        <div className="container max-w-screen-2xl mx-auto px-6">
           <div className="mx-auto max-w-3xl">
             <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter text-[#0B2C4D]">
               Frequently Asked Questions
@@ -277,7 +277,7 @@ export default function PricingPage() {
 
       {/* CTA Section */}
       <section className="border-t border-[#0B2C4D]/10 bg-gradient-to-br from-[#0B2C4D] to-[#1a4d7a] py-24">
-        <div className="container max-w-screen-2xl px-6">
+        <div className="container max-w-screen-2xl mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
               Ready to Get Started?
