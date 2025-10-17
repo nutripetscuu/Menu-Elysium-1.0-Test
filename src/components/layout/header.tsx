@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, CalendarDays, ShoppingBag, Utensils } from "lucide-react";
+import { Menu, CalendarDays, ShoppingBag, Utensils, ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CartIcon } from "@/components/cart-icon";
@@ -27,6 +27,20 @@ export function Header({ categories, onShowAll }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm shadow-sm">
       <div className="flex h-14 items-center px-4 relative">
+        {/* Back to NoWaiter button */}
+        <div className="flex-shrink-0 mr-2">
+          <Link href="/">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="gap-2 text-[#0B2C4D] hover:bg-[#0B2C4D]/10"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              <span className="hidden sm:inline">Back to NoWaiter</span>
+            </Button>
+          </Link>
+        </div>
+
         {/* Mobile menu */}
         <div className="flex-shrink-0">
           <Sheet>

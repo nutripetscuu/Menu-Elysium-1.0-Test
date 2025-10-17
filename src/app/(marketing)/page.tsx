@@ -22,25 +22,25 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="container max-w-screen-2xl px-4 py-24 md:py-32 lg:py-40">
+      <section className="container max-w-screen-2xl px-6 py-24 md:py-32 lg:py-40">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
           {/* Badge */}
-          <div className="inline-flex items-center rounded-full border border-border/40 bg-background/60 px-4 py-1.5 text-sm">
-            <Zap className="mr-2 h-4 w-4 text-yellow-500" />
-            <span className="text-muted-foreground">
+          <div className="inline-flex items-center rounded-full border border-[#0B2C4D]/20 bg-[#F0F2F5] px-4 py-1.5 text-sm">
+            <Zap className="mr-2 h-4 w-4 text-[#FF3B30]" />
+            <span className="text-[#333333]/80 font-medium">
               Trusted by restaurants worldwide
             </span>
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-[#0B2C4D]">
             Restaurant Management
             <br />
-            <span className="text-primary">Made Simple</span>
+            <span className="text-[#FF3B30]">Made Simple</span>
           </h1>
 
           {/* Subheading */}
-          <p className="max-w-2xl text-lg text-muted-foreground sm:text-xl">
+          <p className="max-w-2xl text-lg text-[#333333]/70 sm:text-xl">
             Transform your restaurant with QR code ordering, real-time
             analytics, and powerful management tools. Set up in minutes, not
             weeks.
@@ -49,30 +49,37 @@ export default function HomePage() {
           {/* CTA Buttons */}
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link href="/signup">
-              <Button size="lg" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-[#FF3B30] hover:bg-[#FF3B30]/90 text-white font-semibold shadow-lg shadow-[#FF3B30]/20"
+              >
                 Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
             <Link href="/menu?restaurant=elysium">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto">
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto border-[#0B2C4D] text-[#0B2C4D] hover:bg-[#0B2C4D] hover:text-white"
+              >
                 View Demo
               </Button>
             </Link>
           </div>
 
           {/* Social Proof */}
-          <div className="flex items-center gap-8 text-sm text-muted-foreground">
+          <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-[#333333]/70">
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-[#FF3B30]" />
               <span>7-day free trial</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-[#FF3B30]" />
               <span>No credit card required</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-green-500" />
+              <Check className="h-4 w-4 text-[#FF3B30]" />
               <span>Cancel anytime</span>
             </div>
           </div>
@@ -80,15 +87,15 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section className="border-t border-border/40 bg-muted/50 py-24">
-        <div className="container max-w-screen-2xl px-4">
+      <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
+        <div className="container max-w-screen-2xl px-6">
           <div className="mx-auto max-w-5xl">
             {/* Section Header */}
             <div className="mb-16 text-center">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-[#0B2C4D]">
                 Everything You Need to Succeed
               </h2>
-              <p className="mt-4 text-lg text-muted-foreground">
+              <p className="mt-4 text-lg text-[#333333]/70">
                 Powerful features designed for modern restaurants
               </p>
             </div>
@@ -96,10 +103,10 @@ export default function HomePage() {
             {/* Features Grid */}
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {/* Feature 1: QR Ordering */}
-              <Card>
+              <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <QrCode className="h-6 w-6 text-primary" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FF3B30]/10">
+                    <QrCode className="h-6 w-6 text-[#FF3B30]" />
                   </div>
                   <CardTitle>QR Code Ordering</CardTitle>
                   <CardDescription>
@@ -108,9 +115,9 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
                       <span>Instant menu updates</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -126,10 +133,10 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 2: Analytics */}
-              <Card>
+              <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <BarChart3 className="h-6 w-6 text-primary" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
+                    <BarChart3 className="h-6 w-6 text-[#0B2C4D]" />
                   </div>
                   <CardTitle>Real-Time Analytics</CardTitle>
                   <CardDescription>
@@ -138,9 +145,9 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
                       <span>Sales tracking</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -156,10 +163,10 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 3: Easy Management */}
-              <Card>
+              <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Settings className="h-6 w-6 text-primary" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
+                    <Settings className="h-6 w-6 text-[#0B2C4D]" />
                   </div>
                   <CardTitle>Easy Management</CardTitle>
                   <CardDescription>
@@ -168,9 +175,9 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
                       <span>Drag-and-drop menus</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -186,10 +193,10 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 4: Multi-Device */}
-              <Card>
+              <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Smartphone className="h-6 w-6 text-primary" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
+                    <Smartphone className="h-6 w-6 text-[#0B2C4D]" />
                   </div>
                   <CardTitle>Mobile-First Design</CardTitle>
                   <CardDescription>
@@ -198,9 +205,9 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
                       <span>Lightning-fast loading</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -216,10 +223,10 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 5: Multi-Location */}
-              <Card>
+              <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Globe className="h-6 w-6 text-primary" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
+                    <Globe className="h-6 w-6 text-[#0B2C4D]" />
                   </div>
                   <CardTitle>Multi-Location Support</CardTitle>
                   <CardDescription>
@@ -228,9 +235,9 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
                       <span>Centralized management</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -246,10 +253,10 @@ export default function HomePage() {
               </Card>
 
               {/* Feature 6: Fast Setup */}
-              <Card>
+              <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <Zap className="h-6 w-6 text-primary" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#0B2C4D]/10">
+                    <Zap className="h-6 w-6 text-[#0B2C4D]" />
                   </div>
                   <CardTitle>Quick Setup</CardTitle>
                   <CardDescription>
@@ -258,9 +265,9 @@ export default function HomePage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
                       <span>5-minute setup</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -280,19 +287,22 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border/40 py-24">
-        <div className="container max-w-screen-2xl px-4">
+      <section className="border-t border-[#0B2C4D]/10 bg-gradient-to-br from-[#0B2C4D] to-[#1a4d7a] py-24">
+        <div className="container max-w-screen-2xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
               Ready to Modernize Your Restaurant?
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-lg text-white/80">
               Join hundreds of restaurants already using NoWaiter to streamline
               operations and delight customers.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Link href="/signup">
-                <Button size="lg" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-[#FF3B30] hover:bg-[#FF3B30]/90 text-white font-semibold shadow-lg shadow-[#FF3B30]/30"
+                >
                   Start Free Trial
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -301,7 +311,7 @@ export default function HomePage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-[#0B2C4D]"
                 >
                   Learn More
                 </Button>

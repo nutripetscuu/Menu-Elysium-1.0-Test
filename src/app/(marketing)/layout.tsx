@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { QrCode } from "lucide-react";
 
 export default function MarketingLayout({
   children,
@@ -10,46 +10,60 @@ export default function MarketingLayout({
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 max-w-screen-2xl items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <QrCode className="h-6 w-6" />
-            <span className="font-bold text-xl">NoWaiter</span>
-          </Link>
+      <header className="sticky top-0 z-50 w-full border-b border-[#0B2C4D]/20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
+        <div className="container max-w-screen-2xl px-6">
+          <div className="grid grid-cols-[256px_1fr_256px] h-20 items-center gap-8">
+            {/* Logo */}
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/branding/nowaiter-logo.png"
+                alt="NoWaiter - Restaurant Management Made Simple"
+                width={256}
+                height={64}
+                className="h-16 w-auto"
+                priority
+                quality={100}
+              />
+            </Link>
 
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-            <Link
-              href="/features"
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/menu?restaurant=elysium"
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
-            >
-              Demo
-            </Link>
-          </nav>
+            {/* Navigation - Centered */}
+            <nav className="hidden md:flex items-center justify-center space-x-8 text-base font-medium">
+              <Link
+                href="/features"
+                className="transition-colors hover:text-[#0B2C4D] text-[#333333]/70 font-medium leading-none"
+              >
+                Features
+              </Link>
+              <Link
+                href="/pricing"
+                className="transition-colors hover:text-[#0B2C4D] text-[#333333]/70 font-medium leading-none"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/menu?restaurant=elysium"
+                className="transition-colors hover:text-[#0B2C4D] text-[#333333]/70 font-medium leading-none"
+              >
+                Demo
+              </Link>
+            </nav>
 
-          {/* CTA Buttons */}
-          <div className="flex items-center space-x-4">
-            <Link href="/login">
-              <Button variant="ghost" className="hidden md:inline-flex">
-                Sign In
-              </Button>
-            </Link>
-            <Link href="/signup">
-              <Button>Start Free Trial</Button>
-            </Link>
+            {/* CTA Buttons */}
+            <div className="flex items-center justify-end space-x-4">
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  className="hidden md:inline-flex text-[#0B2C4D] hover:bg-[#0B2C4D]/10"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button className="bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white font-semibold">
+                  Start Free Trial
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
@@ -58,17 +72,17 @@ export default function MarketingLayout({
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-background/95">
-        <div className="container max-w-screen-2xl py-12 md:py-16">
+      <footer className="border-t border-[#0B2C4D]/10 bg-[#0B2C4D]">
+        <div className="container max-w-screen-2xl py-12 md:py-16 px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {/* Company */}
             <div>
-              <h3 className="font-semibold mb-4">Company</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-semibold mb-4 text-white">Company</h3>
+              <ul className="space-y-3 text-sm text-white/70">
                 <li>
                   <Link
                     href="/about"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     About Us
                   </Link>
@@ -76,7 +90,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/contact"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Contact
                   </Link>
@@ -84,7 +98,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/careers"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Careers
                   </Link>
@@ -94,12 +108,12 @@ export default function MarketingLayout({
 
             {/* Product */}
             <div>
-              <h3 className="font-semibold mb-4">Product</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-semibold mb-4 text-white">Product</h3>
+              <ul className="space-y-3 text-sm text-white/70">
                 <li>
                   <Link
                     href="/features"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Features
                   </Link>
@@ -107,7 +121,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/pricing"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Pricing
                   </Link>
@@ -115,7 +129,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/menu?restaurant=elysium"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Demo
                   </Link>
@@ -125,12 +139,12 @@ export default function MarketingLayout({
 
             {/* Resources */}
             <div>
-              <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-semibold mb-4 text-white">Resources</h3>
+              <ul className="space-y-3 text-sm text-white/70">
                 <li>
                   <Link
                     href="/docs"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Documentation
                   </Link>
@@ -138,7 +152,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/support"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Support
                   </Link>
@@ -146,7 +160,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/blog"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Blog
                   </Link>
@@ -156,12 +170,12 @@ export default function MarketingLayout({
 
             {/* Legal */}
             <div>
-              <h3 className="font-semibold mb-4">Legal</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
+              <h3 className="font-semibold mb-4 text-white">Legal</h3>
+              <ul className="space-y-3 text-sm text-white/70">
                 <li>
                   <Link
                     href="/privacy"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Privacy Policy
                   </Link>
@@ -169,7 +183,7 @@ export default function MarketingLayout({
                 <li>
                   <Link
                     href="/terms"
-                    className="hover:text-foreground transition-colors"
+                    className="hover:text-white transition-colors"
                   >
                     Terms of Service
                   </Link>
@@ -179,7 +193,7 @@ export default function MarketingLayout({
           </div>
 
           {/* Bottom */}
-          <div className="mt-12 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
+          <div className="mt-12 border-t border-white/20 pt-8 text-center text-sm text-white/60">
             <p>© 2025 NoWaiter. All rights reserved.</p>
           </div>
         </div>
