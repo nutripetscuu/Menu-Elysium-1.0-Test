@@ -148,13 +148,13 @@ export default function RestaurantInfoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted">
+    <div className="min-h-screen bg-gradient-to-br from-white to-[#F0F2F5]">
       {/* Header */}
       <div className="border-b bg-background/95 backdrop-blur">
         <div className="container max-w-4xl mx-auto py-4 px-4">
           <Link href="/" className="flex items-center gap-2">
-            <Coffee className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">NoWaiter</span>
+            <Coffee className="h-6 w-6 text-[#C41E3A]" />
+            <span className="text-xl font-bold text-[#0B2C4D]">NoWaiter</span>
           </Link>
         </div>
       </div>
@@ -381,7 +381,7 @@ export default function RestaurantInfoPage() {
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back
                 </Button>
-                <Button type="submit" disabled={loading} className="flex-1">
+                <Button type="submit" disabled={loading} className="flex-1 bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white">
                   {loading ? (
                     <>Saving...</>
                   ) : (

@@ -80,7 +80,7 @@ export function AdminSidebar() {
             <Coffee className="h-6 w-6 text-primary" />
           </div>
           <div>
-            <h2 className="font-bold text-lg">NoWaiter</h2>
+            <h2 className="font-bold text-lg text-foreground">NoWaiter</h2>
             <p className="text-xs text-muted-foreground">Admin Panel</p>
           </div>
         </Link>

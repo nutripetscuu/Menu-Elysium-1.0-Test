@@ -244,13 +244,13 @@ export default function PlanPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted">
+    <div className="min-h-screen bg-gradient-to-br from-white to-[#F0F2F5]">
       {/* Header */}
       <div className="border-b bg-background/95 backdrop-blur">
         <div className="container max-w-4xl mx-auto py-4 px-4">
           <Link href="/" className="flex items-center gap-2">
-            <Coffee className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">NoWaiter</span>
+            <Coffee className="h-6 w-6 text-[#C41E3A]" />
+            <span className="text-xl font-bold text-[#0B2C4D]">NoWaiter</span>
           </Link>
         </div>
       </div>
@@ -279,6 +279,7 @@ export default function PlanPage() {
                     size="sm"
                     onClick={() => setBillingCycle('monthly')}
                     disabled={loading}
+                    className={billingCycle === 'monthly' ? 'bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white' : ''}
                   >
                     Monthly
                   </Button>
@@ -288,9 +289,10 @@ export default function PlanPage() {
                     size="sm"
                     onClick={() => setBillingCycle('annual')}
                     disabled={loading}
+                    className={billingCycle === 'annual' ? 'bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white' : ''}
                   >
                     Annual
-                    <span className="ml-2 rounded bg-green-500/10 px-1.5 py-0.5 text-xs text-green-600">
+                    <span className="ml-2 rounded bg-[#C41E3A]/10 px-1.5 py-0.5 text-xs text-[#C41E3A]">
                       Save up to 17%
                     </span>
                   </Button>
@@ -305,15 +307,15 @@ export default function PlanPage() {
                     className={cn(
                       'relative rounded-lg border-2 p-6 cursor-pointer transition-all hover:shadow-lg',
                       selectedTier === plan.tier
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border hover:border-primary/50',
-                      plan.popular && 'ring-2 ring-primary/20'
+                        ? 'border-[#C41E3A] bg-[#C41E3A]/5'
+                        : 'border-border hover:border-[#C41E3A]/50',
+                      plan.popular && 'ring-2 ring-[#C41E3A]/20'
                     )}
                     onClick={() => setSelectedTier(plan.tier)}
                   >
                     {plan.popular && (
                       <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                        <span className="rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+                        <span className="rounded-full bg-[#C41E3A] px-3 py-1 text-xs font-medium text-white">
                           Most Popular
                         </span>
                       </div>
@@ -351,7 +353,7 @@ export default function PlanPage() {
                       <ul className="space-y-2">
                         {plan.features.map((feature) => (
                           <li key={feature} className="flex items-start gap-2 text-sm">
-                            <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                            <Check className="h-4 w-4 text-[#C41E3A] mt-0.5 flex-shrink-0" />
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -360,7 +362,7 @@ export default function PlanPage() {
                       {/* Selection indicator */}
                       {selectedTier === plan.tier && (
                         <div className="pt-2">
-                          <div className="rounded-lg bg-primary/10 px-3 py-2 text-center text-sm font-medium text-primary">
+                          <div className="rounded-lg bg-[#C41E3A]/10 px-3 py-2 text-center text-sm font-medium text-[#C41E3A]">
                             Selected
                           </div>
                         </div>
@@ -419,7 +421,7 @@ export default function PlanPage() {
                 {billingCycle === 'annual' && savings > 0 && (
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Ahorro anual</span>
-                    <span className="font-medium text-green-600">${savings.toLocaleString('es-MX')} MXN</span>
+                    <span className="font-medium text-[#C41E3A]">${savings.toLocaleString('es-MX')} MXN</span>
                   </div>
                 )}
                 <div className="border-t pt-2 mt-2">
@@ -458,7 +460,7 @@ export default function PlanPage() {
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Back
                 </Button>
-                <Button type="submit" disabled={loading} className="flex-1">
+                <Button type="submit" disabled={loading} className="flex-1 bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white">
                   {loading ? (
                     <>Processing...</>
                   ) : selectedTier === 'enterprise' ? (

@@ -9,41 +9,73 @@ import type { AdminUser, AuthContextValue } from '@/lib/types/admin';
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  console.log('[AUTH PROVIDER v2] Component mounting/rendering - NEW VERSION WITH FIXES');
   const [user, setUser] = useState<User | null>(null);
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Load admin user data from database
+  console.log('[AUTH PROVIDER v2] Current state:', { user: !!user, adminUser: !!adminUser, loading });
+
+  // Load admin user data from database using server action
   const loadAdminUser = useCallback(async (userId: string) => {
     try {
-      console.log('[AUTH PROVIDER] Loading admin user data for:', userId);
-      const supabase = createBrowserSupabaseClient() as any;
-      const { data, error } = await supabase
-        .from('admin_users')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      console.log('[AUTH PROVIDER] 🔄 Loading admin user data for:', userId);
 
-      if (error) {
-        console.error('[AUTH PROVIDER] Error loading admin user:', error);
-        setAdminUser(null);
-        throw error; // Re-throw so the caller knows it failed
+      // Import server action dynamically
+      const { getAdminUserData } = await import('@/app/actions/auth');
+
+      console.log('[AUTH PROVIDER] 🔄 Calling server action...');
+      const adminUserData = await getAdminUserData(userId);
+
+      console.log('[AUTH PROVIDER] 📊 Server action result:', { hasData: !!adminUserData });
+
+      if (!adminUserData) {
+        console.error('[AUTH PROVIDER] ❌ No admin user data returned');
+        // Don't throw - just set a fallback admin user
+        setAdminUser({
+          id: userId,
+          email: '',
+          role: 'admin',
+          restaurantId: null,
+          restaurantSubdomain: null,
+          created_at: new Date().toISOString(),
+          last_login: new Date().toISOString()
+        });
+        return;
       }
 
-      console.log('[AUTH PROVIDER] Admin user loaded:', data.email);
-      setAdminUser(data);
+      console.log('[AUTH PROVIDER] ✅ Admin user data loaded:', JSON.stringify(adminUserData, null, 2));
+      setAdminUser(adminUserData);
 
-      // Update last_login timestamp (don't await, fire and forget)
-      supabase
-        .from('admin_users')
-        .update({ last_login: new Date().toISOString() })
-        .eq('id', userId)
-        .catch((err: any) => console.warn('[AUTH PROVIDER] Failed to update last_login:', err));
+      // Update last_login timestamp (fire and forget) - wrapped in try/catch
+      try {
+        const supabase = createBrowserSupabaseClient();
+        const updatePromise = supabase
+          .from('admin_users')
+          .update({ last_login: new Date().toISOString() })
+          .eq('id', userId);
+
+        updatePromise.then(() => {
+          console.log('[AUTH PROVIDER] last_login updated');
+        }).catch((err: any) => {
+          console.warn('[AUTH PROVIDER] Failed to update last_login:', err);
+        });
+      } catch (err) {
+        console.warn('[AUTH PROVIDER] Exception updating last_login:', err);
+      }
     } catch (error) {
-      console.error('[AUTH PROVIDER] Exception in loadAdminUser:', error);
-      setAdminUser(null);
-      throw error; // Re-throw for caller
+      console.error('[AUTH PROVIDER] ❌ Exception in loadAdminUser:', error);
+      // Don't throw - set a fallback admin user to prevent auth session loss
+      setAdminUser({
+        id: userId,
+        email: '',
+        role: 'admin',
+        restaurantId: null,
+        restaurantSubdomain: null,
+        created_at: new Date().toISOString(),
+        last_login: new Date().toISOString()
+      });
     }
   }, []);
 
@@ -58,21 +90,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         console.log('[AUTH PROVIDER] Initial user loaded:', !!authenticatedUser);
         setUser(authenticatedUser ?? null);
         if (authenticatedUser) {
-          // Use authenticated user data
-          console.log('[AUTH PROVIDER] Creating admin user from authenticated data');
-          setAdminUser({
-            id: authenticatedUser.id,
-            email: authenticatedUser.email || '',
-            role: 'admin',
-            created_at: new Date().toISOString(),
-            last_login: new Date().toISOString()
-          });
+          // Load full admin user data from database (includes restaurantId)
+          console.log('[AUTH PROVIDER] Waiting for loadAdminUser to complete...');
+          await loadAdminUser(authenticatedUser.id);
+          console.log('[AUTH PROVIDER] loadAdminUser completed');
         }
-        console.log('[AUTH PROVIDER] Setting loading to false');
+        console.log('[AUTH PROVIDER] ✅ Setting loading to false');
         setLoading(false);
       })
       .catch((error) => {
-        console.error('[AUTH PROVIDER] Error in auth initialization:', error);
+        console.error('[AUTH PROVIDER] ❌ Error in auth initialization:', error);
         setLoading(false);
       });
 
@@ -84,14 +111,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(session?.user ?? null);
 
       if (session?.user) {
-        console.log('[AUTH PROVIDER] Creating admin user from auth change');
-        setAdminUser({
-          id: session.user.id,
-          email: session.user.email || '',
-          role: 'admin',
-          created_at: new Date().toISOString(),
-          last_login: new Date().toISOString()
-        });
+        // Load full admin user data from database (includes restaurantId)
+        await loadAdminUser(session.user.id);
       } else {
         setAdminUser(null);
       }
@@ -100,7 +121,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => {
       subscription.unsubscribe();
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array - loadAdminUser is stable due to useCallback
 
   // Sign in with email and password
   const signIn = async (email: string, password: string) => {

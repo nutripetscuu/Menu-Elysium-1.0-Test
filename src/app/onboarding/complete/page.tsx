@@ -1,8 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+
+// Disable static generation for this page since it uses searchParams dynamically
+export const dynamic = 'force-dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Coffee, CheckCircle, ArrowRight, Globe, Settings, BarChart, Menu, Loader2, Download } from 'lucide-react';
@@ -37,7 +40,29 @@ const nextSteps = [
   },
 ];
 
-export default function CompletePage() {
+// Loading fallback component
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center">
+      <Card className="w-full max-w-md">
+        <CardContent className="pt-6">
+          <div className="flex flex-col items-center gap-4 py-8">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            <div className="text-center space-y-2">
+              <h3 className="text-lg font-semibold">Loading...</h3>
+              <p className="text-sm text-muted-foreground">
+                Please wait a moment.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// Content component that uses searchParams
+function CompletePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { signupData, restaurantData, subdomainData, planData, currentStep, setCurrentStep } = useOnboarding();
@@ -400,5 +425,14 @@ export default function CompletePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Main export with Suspense boundary
+export default function CompletePage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <CompletePageContent />
+    </Suspense>
   );
 }

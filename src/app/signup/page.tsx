@@ -127,15 +127,15 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background to-muted px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-white to-[#F0F2F5] px-4 py-12">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex justify-center mb-8">
           <Link href="/" className="flex items-center gap-2">
-            <div className="rounded-full bg-primary/10 p-3">
-              <Coffee className="h-8 w-8 text-primary" />
+            <div className="rounded-full bg-[#C41E3A]/10 p-3">
+              <Coffee className="h-8 w-8 text-[#C41E3A]" />
             </div>
-            <span className="text-2xl font-bold">NoWaiter</span>
+            <span className="text-2xl font-bold text-[#0B2C4D]">NoWaiter</span>
           </Link>
         </div>
 
@@ -258,18 +258,18 @@ export default function SignupPage() {
                   className="text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   I agree to the{' '}
-                  <Link href="/terms" className="text-primary hover:underline">
+                  <Link href="/terms" className="text-[#C41E3A] hover:underline">
                     Terms of Service
                   </Link>{' '}
                   and{' '}
-                  <Link href="/privacy" className="text-primary hover:underline">
+                  <Link href="/privacy" className="text-[#C41E3A] hover:underline">
                     Privacy Policy
                   </Link>
                 </label>
               </div>
 
               {/* Submit button */}
-              <Button type="submit" className="w-full" disabled={loading} size="lg">
+              <Button type="submit" className="w-full bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white" disabled={loading} size="lg">
                 {loading ? (
                   <>Creating account...</>
                 ) : (
@@ -284,7 +284,7 @@ export default function SignupPage() {
             {/* Login link */}
             <div className="mt-6 text-center text-sm">
               <span className="text-muted-foreground">Already have an account? </span>
-              <Link href="/login" className="text-primary hover:underline font-medium">
+              <Link href="/login" className="text-[#C41E3A] hover:underline font-medium">
                 Sign in
               </Link>
             </div>

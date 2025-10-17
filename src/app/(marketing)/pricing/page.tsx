@@ -90,25 +90,25 @@ export default function PricingPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="container max-w-screen-2xl px-4 py-24">
+      <section className="container max-w-screen-2xl px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-[#0B2C4D]">
             Simple, Transparent Pricing
           </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-4 text-lg text-[#333333]/70">
             Choose the perfect plan for your restaurant. All plans include a
             7-day free trial.
           </p>
 
           {/* Billing Toggle */}
-          <div className="mt-8 inline-flex items-center rounded-full border border-border/40 bg-background p-1">
+          <div className="mt-8 inline-flex items-center rounded-full border border-[#0B2C4D]/10 bg-background p-1">
             <button
               onClick={() => setBillingCycle("monthly")}
               className={cn(
                 "rounded-full px-6 py-2 text-sm font-medium transition-colors",
                 billingCycle === "monthly"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-[#C41E3A] text-white"
+                  : "text-[#333333]/70 hover:text-[#0B2C4D]"
               )}
             >
               Monthly
@@ -118,12 +118,12 @@ export default function PricingPage() {
               className={cn(
                 "rounded-full px-6 py-2 text-sm font-medium transition-colors",
                 billingCycle === "annual"
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-[#C41E3A] text-white"
+                  : "text-[#333333]/70 hover:text-[#0B2C4D]"
               )}
             >
               Annual
-              <span className="ml-2 rounded-full bg-green-500/10 px-2 py-0.5 text-xs text-green-500">
+              <span className="ml-2 rounded-full bg-[#C41E3A]/10 px-2 py-0.5 text-xs text-[#C41E3A]">
                 Save 20%
               </span>
             </button>
@@ -132,19 +132,19 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="container max-w-screen-2xl px-4 pb-24">
+      <section className="container max-w-screen-2xl px-6 pb-24">
         <div className="grid gap-8 lg:grid-cols-3">
           {plans.map((plan) => (
             <Card
               key={plan.name}
               className={cn(
-                "relative flex flex-col",
-                plan.popular && "border-primary shadow-lg"
+                "relative flex flex-col border-[#0B2C4D]/10",
+                plan.popular && "border-[#C41E3A] shadow-lg"
               )}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-0 right-0 mx-auto w-fit">
-                  <div className="flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+                  <div className="flex items-center gap-1 rounded-full bg-[#C41E3A] px-3 py-1 text-xs font-medium text-white">
                     <Sparkles className="h-3 w-3" />
                     Most Popular
                   </div>
@@ -166,14 +166,14 @@ export default function PricingPage() {
                       {getPrice(plan)}
                     </span>
                     {plan.monthlyPrice && (
-                      <span className="text-muted-foreground">
+                      <span className="text-[#333333]/70">
                         /{billingCycle === "monthly" ? "month" : "month"}
                       </span>
                     )}
                   </div>
                   {billingCycle === "annual" && plan.annualPrice && (
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      ${(plan.annualPrice / 12).toFixed(0).toLocaleString('es-MX')} MXN/mes facturado anualmente
+                    <p className="mt-1 text-sm text-[#333333]/70">
+                      ${Math.round(plan.annualPrice / 12).toLocaleString('es-MX')} MXN/mes facturado anualmente
                     </p>
                   )}
                 </div>
@@ -182,7 +182,7 @@ export default function PricingPage() {
                 <ul className="space-y-3">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+                      <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#C41E3A]" />
                       <span className="text-sm">{feature}</span>
                     </li>
                   ))}
@@ -192,7 +192,12 @@ export default function PricingPage() {
               <CardFooter>
                 <Link href={plan.name === "Enterprise" ? "/contact" : "/signup"} className="w-full">
                   <Button
-                    className="w-full"
+                    className={cn(
+                      "w-full",
+                      plan.popular
+                        ? "bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white"
+                        : "border-[#0B2C4D] text-[#0B2C4D] hover:bg-[#0B2C4D] hover:text-white"
+                    )}
                     variant={plan.popular ? "default" : "outline"}
                   >
                     {plan.cta}
@@ -206,19 +211,19 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="border-t border-border/40 bg-muted/50 py-24">
-        <div className="container max-w-screen-2xl px-4">
+      <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
+        <div className="container max-w-screen-2xl px-6">
           <div className="mx-auto max-w-3xl">
-            <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter">
+            <h2 className="mb-12 text-center text-3xl font-bold tracking-tighter text-[#0B2C4D]">
               Frequently Asked Questions
             </h2>
 
             <div className="space-y-8">
               <div>
-                <h3 className="mb-2 text-lg font-semibold">
+                <h3 className="mb-2 text-lg font-semibold text-[#0B2C4D]">
                   What happens after the free trial?
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-[#333333]/70">
                   After your 7-day free trial ends, you'll be automatically
                   enrolled in your selected plan. You can cancel anytime during
                   the trial with no charges.
@@ -226,40 +231,40 @@ export default function PricingPage() {
               </div>
 
               <div>
-                <h3 className="mb-2 text-lg font-semibold">
+                <h3 className="mb-2 text-lg font-semibold text-[#0B2C4D]">
                   Can I change plans later?
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-[#333333]/70">
                   Yes! You can upgrade or downgrade your plan at any time. Changes
                   will be reflected in your next billing cycle.
                 </p>
               </div>
 
               <div>
-                <h3 className="mb-2 text-lg font-semibold">
+                <h3 className="mb-2 text-lg font-semibold text-[#0B2C4D]">
                   What payment methods do you accept?
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-[#333333]/70">
                   We accept all major credit cards (Visa, MasterCard, American
                   Express) and offer invoicing for annual Enterprise plans.
                 </p>
               </div>
 
               <div>
-                <h3 className="mb-2 text-lg font-semibold">
+                <h3 className="mb-2 text-lg font-semibold text-[#0B2C4D]">
                   Is there a setup fee?
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-[#333333]/70">
                   No setup fees! All plans include free onboarding support to
                   help you get started quickly.
                 </p>
               </div>
 
               <div>
-                <h3 className="mb-2 text-lg font-semibold">
+                <h3 className="mb-2 text-lg font-semibold text-[#0B2C4D]">
                   Can I add more locations later?
                 </h3>
-                <p className="text-muted-foreground">
+                <p className="text-[#333333]/70">
                   Absolutely! You can upgrade to a higher tier or contact us for
                   custom pricing if you need more locations than your current
                   plan allows.
@@ -271,18 +276,18 @@ export default function PricingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="border-t border-border/40 py-24">
-        <div className="container max-w-screen-2xl px-4">
+      <section className="border-t border-[#0B2C4D]/10 bg-gradient-to-br from-[#0B2C4D] to-[#1a4d7a] py-24">
+        <div className="container max-w-screen-2xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-white">
               Ready to Get Started?
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-lg text-white/80">
               Start your 7-day free trial today. No credit card required.
             </p>
             <div className="mt-8">
               <Link href="/signup">
-                <Button size="lg">
+                <Button size="lg" className="bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white font-semibold shadow-lg shadow-[#C41E3A]/30">
                   Start Free Trial
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

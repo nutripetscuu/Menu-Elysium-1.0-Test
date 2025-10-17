@@ -26,7 +26,7 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full border border-[#0B2C4D]/20 bg-[#F0F2F5] px-4 py-1.5 text-sm">
-            <Zap className="mr-2 h-4 w-4 text-[#FF3B30]" />
+            <Zap className="mr-2 h-4 w-4 text-[#C41E3A]" />
             <span className="text-[#333333]/80 font-medium">
               Trusted by restaurants worldwide
             </span>
@@ -36,7 +36,7 @@ export default function HomePage() {
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-[#0B2C4D]">
             Restaurant Management
             <br />
-            <span className="text-[#FF3B30]">Made Simple</span>
+            <span className="text-[#C41E3A]">Made Simple</span>
           </h1>
 
           {/* Subheading */}
@@ -51,7 +51,7 @@ export default function HomePage() {
             <Link href="/signup">
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-[#FF3B30] hover:bg-[#FF3B30]/90 text-white font-semibold shadow-lg shadow-[#FF3B30]/20"
+                className="w-full sm:w-auto bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white font-semibold shadow-lg shadow-[#C41E3A]/20"
               >
                 Start Free Trial
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -71,15 +71,15 @@ export default function HomePage() {
           {/* Social Proof */}
           <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-[#333333]/70">
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-[#FF3B30]" />
+              <Check className="h-4 w-4 text-[#C41E3A]" />
               <span>7-day free trial</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-[#FF3B30]" />
+              <Check className="h-4 w-4 text-[#C41E3A]" />
               <span>No credit card required</span>
             </div>
             <div className="flex items-center gap-2">
-              <Check className="h-4 w-4 text-[#FF3B30]" />
+              <Check className="h-4 w-4 text-[#C41E3A]" />
               <span>Cancel anytime</span>
             </div>
           </div>
@@ -105,8 +105,8 @@ export default function HomePage() {
               {/* Feature 1: QR Ordering */}
               <Card className="border-[#0B2C4D]/10 bg-white">
                 <CardHeader>
-                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#FF3B30]/10">
-                    <QrCode className="h-6 w-6 text-[#FF3B30]" />
+                  <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-[#C41E3A]/10">
+                    <QrCode className="h-6 w-6 text-[#C41E3A]" />
                   </div>
                   <CardTitle>QR Code Ordering</CardTitle>
                   <CardDescription>
@@ -117,7 +117,7 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#C41E3A]" />
                       <span>Instant menu updates</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -147,7 +147,7 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#C41E3A]" />
                       <span>Sales tracking</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -177,7 +177,7 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#C41E3A]" />
                       <span>Drag-and-drop menus</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -207,7 +207,7 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#C41E3A]" />
                       <span>Lightning-fast loading</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -237,7 +237,7 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#C41E3A]" />
                       <span>Centralized management</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -267,7 +267,7 @@ export default function HomePage() {
                 <CardContent>
                   <ul className="space-y-2 text-sm text-[#333333]/70">
                     <li className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#FF3B30]" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#C41E3A]" />
                       <span>5-minute setup</span>
                     </li>
                     <li className="flex items-start gap-2">
@@ -301,7 +301,7 @@ export default function HomePage() {
               <Link href="/signup">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-[#FF3B30] hover:bg-[#FF3B30]/90 text-white font-semibold shadow-lg shadow-[#FF3B30]/30"
+                  className="w-full sm:w-auto bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white font-semibold shadow-lg shadow-[#C41E3A]/30"
                 >
                   Start Free Trial
                   <ArrowRight className="ml-2 h-4 w-4" />

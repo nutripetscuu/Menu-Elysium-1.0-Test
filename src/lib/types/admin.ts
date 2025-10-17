@@ -10,6 +10,8 @@ export interface AdminUser {
   id: string;
   email: string;
   role: AdminRole;
+  restaurantId?: string | null; // Each admin belongs to a specific restaurant (null for super_admins)
+  restaurantSubdomain?: string | null; // Restaurant subdomain for menu preview
   created_at: string;
   last_login: string | null;
 }

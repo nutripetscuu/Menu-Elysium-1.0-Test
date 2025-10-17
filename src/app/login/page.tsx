@@ -24,6 +24,19 @@ function LoginForm() {
   const errorParam = searchParams.get('error');
 
   useEffect(() => {
+    // Force favicon update
+    const updateFavicon = () => {
+      const links = document.querySelectorAll("link[rel*='icon']");
+      links.forEach(link => link.remove());
+
+      const link = document.createElement('link');
+      link.rel = 'icon';
+      link.type = 'image/svg+xml';
+      link.href = '/favicon.svg?v=' + Date.now();
+      document.head.appendChild(link);
+    };
+    updateFavicon();
+
     // Show error from URL params (e.g., unauthorized)
     if (errorParam === 'unauthorized') {
       setError('You do not have admin access to this application.');
@@ -99,15 +112,15 @@ function LoginForm() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background to-muted px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-white to-[#F0F2F5] px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1 text-center">
           <div className="flex justify-center mb-4">
-            <div className="rounded-full bg-primary/10 p-3">
-              <Coffee className="h-8 w-8 text-primary" />
+            <div className="rounded-full bg-[#C41E3A]/10 p-3">
+              <Coffee className="h-8 w-8 text-[#C41E3A]" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold">NoWaiter Admin</CardTitle>
+          <CardTitle className="text-2xl font-bold text-[#0B2C4D]">NoWaiter Admin</CardTitle>
           <CardDescription>Sign in to manage your restaurant menu</CardDescription>
         </CardHeader>
         <CardContent>
@@ -138,7 +151,7 @@ function LoginForm() {
                 <Label htmlFor="password">Password</Label>
                 <Link
                   href="/reset-password"
-                  className="text-sm text-muted-foreground hover:text-primary"
+                  className="text-sm text-muted-foreground hover:text-[#C41E3A]"
                 >
                   Forgot password?
                 </Link>
@@ -155,7 +168,7 @@ function LoginForm() {
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button type="submit" className="w-full bg-[#C41E3A] hover:bg-[#C41E3A]/90 text-white" disabled={loading}>
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -169,7 +182,7 @@ function LoginForm() {
 
           <div className="mt-6 text-center text-sm">
             <span className="text-muted-foreground">Don't have an account? </span>
-            <Link href="/signup" className="text-primary hover:underline font-medium">
+            <Link href="/signup" className="text-[#C41E3A] hover:underline font-medium">
               Sign up for free
             </Link>
           </div>
@@ -177,7 +190,7 @@ function LoginForm() {
           <div className="mt-4 text-center text-xs text-muted-foreground">
             <p>
               This login is for existing restaurant owners. New to NoWaiter?{' '}
-              <Link href="/signup" className="text-primary hover:underline">
+              <Link href="/signup" className="text-[#C41E3A] hover:underline">
                 Create your account
               </Link>
             </p>
@@ -191,8 +204,8 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-background to-muted">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-white to-[#F0F2F5]">
+        <Loader2 className="h-8 w-8 animate-spin text-[#C41E3A]" />
       </div>
     }>
       <LoginForm />

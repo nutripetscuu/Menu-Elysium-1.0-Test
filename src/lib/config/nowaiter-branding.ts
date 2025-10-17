@@ -11,7 +11,7 @@ export const nowaiterBranding = {
   colors: {
     primary: {
       deepOceanBlue: '#0B2C4D', // Backgrounds, primary headers, core branding
-      poppyRed: '#FF3B30',      // "NO" in logo, primary buttons, CTAs, alerts
+      poppyRed: '#C41E3A',      // "NO" in logo, primary buttons, CTAs, alerts
     },
     neutral: {
       graphite: '#333333',      // Body text

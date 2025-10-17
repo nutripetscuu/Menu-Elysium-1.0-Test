@@ -75,7 +75,7 @@ export function AdminHeader() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-10 gap-2">
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-primary/10 text-primary">
+                    <AvatarFallback className="bg-[#C41E3A]/10 text-[#C41E3A]">
                       {getInitials(adminUser.email)}
                     </AvatarFallback>
                   </Avatar>

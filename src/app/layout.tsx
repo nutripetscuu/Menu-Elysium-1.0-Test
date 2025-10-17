@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   keywords: ["restaurant management", "QR code ordering", "digital menu", "restaurant software", "NoWaiter"],
   authors: [{ name: "NoWaiter" }],
   robots: "index, follow",
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({

@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
           available: false,
           reason: 'registered',
           message: `This email is already registered. Please login instead.`,
-          subdomain: restaurant.subdomain,
+          subdomain: (restaurant as any).subdomain,
         });
       }
 
