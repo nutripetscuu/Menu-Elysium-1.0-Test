@@ -29,7 +29,7 @@ export default function FeaturesPage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="container max-w-screen-2xl px-6 py-24">
+      <section className="container max-w-screen-2xl mx-auto px-6 py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-[#0B2C4D]">
             Powerful Features for
