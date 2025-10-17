@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="container max-w-screen-2xl px-6 py-24 md:py-32 lg:py-40">
+      <section className="container max-w-screen-2xl mx-auto px-6 py-24 md:py-32 lg:py-40">
         <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
           {/* Badge */}
           <div className="inline-flex items-center rounded-full border border-[#0B2C4D]/20 bg-[#F0F2F5] px-4 py-1.5 text-sm">
@@ -88,7 +88,7 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section className="border-t border-[#0B2C4D]/10 bg-[#F0F2F5] py-24">
-        <div className="container max-w-screen-2xl px-6">
+        <div className="container max-w-screen-2xl mx-auto px-6">
           <div className="mx-auto max-w-5xl">
             {/* Section Header */}
             <div className="mb-16 text-center">
@@ -288,7 +288,7 @@ export default function HomePage() {
 
       {/* CTA Section */}
       <section className="border-t border-[#0B2C4D]/10 bg-gradient-to-br from-[#0B2C4D] to-[#1a4d7a] py-24">
-        <div className="container max-w-screen-2xl px-6">
+        <div className="container max-w-screen-2xl mx-auto px-6">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-white">
               Ready to Modernize Your Restaurant?

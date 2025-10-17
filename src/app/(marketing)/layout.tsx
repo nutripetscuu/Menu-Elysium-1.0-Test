@@ -73,7 +73,7 @@ export default function MarketingLayout({
 
       {/* Footer */}
       <footer className="border-t border-[#0B2C4D]/10 bg-[#0B2C4D]">
-        <div className="container max-w-screen-2xl py-12 md:py-16 px-6">
+        <div className="container max-w-screen-2xl mx-auto py-12 md:py-16 px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {/* Company */}
             <div>
