@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { iconMap, type IconName } from "@/components/icon-map";
+import { getIconComponent, type IconName } from "@/components/icon-map";
 import { ProductModal } from "@/components/product-modal";
 import type { MenuCategoryWithItems, MenuItem } from "@/lib/types/database";
 
@@ -12,7 +12,7 @@ interface MenuSectionProps {
 }
 
 export function MenuSection({ category }: MenuSectionProps) {
-  const Icon = iconMap[category.icon as IconName] || iconMap['UtensilsCrossed'];
+  const Icon = getIconComponent(category.icon);
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -67,20 +67,31 @@ export function MenuSection({ category }: MenuSectionProps) {
                 </div>
               )}
               
-              <div className={`flex flex-col ${item.sizes ? 'space-y-1' : 'space-y-3'}`}>
+              <div className={`flex flex-col ${(item.sizes || (item.variants && item.variants.length > 0)) ? 'space-y-1' : 'space-y-3'}`}>
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">
                     <h3 className="text-lg font-semibold tracking-tight text-restaurant-charcoal-black leading-tight">
                       {item.name}
                     </h3>
-                    {item.sizes && (
+                    {(item.sizes || (item.variants && item.variants.length > 0)) && (
                       <p className="text-sm text-restaurant-warm-gray leading-relaxed mt-1 pr-2">
                         {item.description}
                       </p>
                     )}
                   </div>
                   <div className="flex-shrink-0">
-                    {item.sizes ? (
+                    {item.variants && item.variants.length > 0 ? (
+                      // New variants system - show count and price range
+                      <div className="text-right">
+                        <p className="text-xs text-restaurant-warm-gray/70 mb-0.5">
+                          {item.variants.length} {item.variants.length === 1 ? 'Variante' : 'Variantes'}
+                        </p>
+                        <p className="text-lg font-bold text-restaurant-deep-burgundy leading-none">
+                          ${Math.min(...item.variants.map(v => v.price)).toFixed(2)} - ${Math.max(...item.variants.map(v => v.price)).toFixed(2)}
+                        </p>
+                      </div>
+                    ) : item.sizes ? (
+                      // Legacy M/G sizes
                       <div className="text-right space-y-1">
                         <p className="text-lg font-bold text-restaurant-deep-burgundy leading-none">
                           M: ${item.sizes.medium}
@@ -90,19 +101,20 @@ export function MenuSection({ category }: MenuSectionProps) {
                         </p>
                       </div>
                     ) : item.price ? (
+                      // Single price
                       <p className="text-xl font-bold text-restaurant-deep-burgundy">
                         ${typeof item.price === 'string' ? item.price : item.price.toFixed(2)}
                       </p>
                     ) : null}
                   </div>
                 </div>
-                
-                {!item.sizes && (
+
+                {!item.sizes && !(item.variants && item.variants.length > 0) && (
                   <p className="text-sm text-restaurant-warm-gray leading-relaxed">
                     {item.description}
                   </p>
                 )}
-                
+
                 {item.portion && (
                   <p className="text-xs text-restaurant-warm-gray/80 font-medium bg-restaurant-warm-beige/50 px-2 py-1 rounded-full inline-block self-start">
                     {item.portion}

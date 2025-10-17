@@ -21,21 +21,28 @@ interface ProductModalProps {
 export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
   const { addItem } = useCart();
   const [selectedSize, setSelectedSize] = useState<"medium" | "grande">("medium");
+  const [selectedVariant, setSelectedVariant] = useState<string | null>(null); // For new variants system
   const [selectedModifiers, setSelectedModifiers] = useState<Record<string, string[]>>({});
   const [quantity, setQuantity] = useState(1);
 
   // Get modifier groups for this item
-  const modifierGroups = item ? getModifierGroups(item.modifierGroups || []) : [];
+  // Handle both string[] (legacy) and ModifierGroup[] (new) formats
+  const modifierGroups = item ? (
+    Array.isArray(item.modifierGroups) && item.modifierGroups.length > 0
+      ? typeof item.modifierGroups[0] === 'string'
+        ? getModifierGroups(item.modifierGroups as string[]) // Legacy format: array of IDs
+        : (item.modifierGroups as any[]) // New format: array of full ModifierGroup objects
+      : []
+  ) : [];
 
   // Initialize modifiers with default values when item changes
   useEffect(() => {
     if (!item) return;
 
-    const groups = getModifierGroups(item.modifierGroups || []);
     const initialModifiers: Record<string, string[]> = {};
 
-    groups.forEach(group => {
-      const defaultOptions = group.options.filter(opt => opt.isDefault).map(opt => opt.id);
+    modifierGroups.forEach((group: any) => {
+      const defaultOptions = group.options.filter((opt: any) => opt.isDefault).map((opt: any) => opt.id);
       if (defaultOptions.length > 0) {
         initialModifiers[group.id] = defaultOptions;
       } else if (group.required && group.options.length > 0) {
@@ -45,8 +52,14 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
 
     setSelectedModifiers(initialModifiers);
     setSelectedSize("medium");
+    // Initialize first variant if variants exist
+    if (item.variants && item.variants.length > 0) {
+      setSelectedVariant(item.variants[0].id);
+    } else {
+      setSelectedVariant(null);
+    }
     setQuantity(1);
-  }, [item?.id]); // Only depend on item.id to prevent infinite loops
+  }, [item]); // Only depend on item, not modifierGroups (which is derived from item)
 
   if (!item) return null;
 
@@ -87,20 +100,27 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
   const calculateTotal = () => {
     let basePrice = 0;
 
-    // Get base price based on size or regular price
-    if (item.sizes) {
+    // Get base price based on pricing type (priority: variants > sizes > price)
+    if (item.variants && item.variants.length > 0 && selectedVariant) {
+      // New variants system
+      const variant = item.variants.find(v => v.id === selectedVariant);
+      basePrice = variant ? variant.price : 0;
+    } else if (item.sizes) {
+      // Legacy M/G sizes
       basePrice = parseFloat(item.sizes[selectedSize]);
     } else if (typeof item.price === "string") {
+      // Single price as string
       basePrice = parseFloat(item.price);
-    } else {
+    } else if (typeof item.price === "number") {
+      // Single price as number
       basePrice = item.price;
     }
 
     // Add modifier prices
-    modifierGroups.forEach(group => {
+    modifierGroups.forEach((group: any) => {
       const selectedOptions = selectedModifiers[group.id] || [];
-      selectedOptions.forEach(optionId => {
-        const option = group.options.find(opt => opt.id === optionId);
+      selectedOptions.forEach((optionId: string) => {
+        const option = group.options.find((opt: any) => opt.id === optionId);
         if (option) {
           basePrice += option.priceModifier;
         }
@@ -116,13 +136,13 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
     const unitPrice = calculateTotal() / quantity;
 
     // Build selected modifiers info for cart display
-    const modifiersInfo = modifierGroups.map(group => {
+    const modifiersInfo = modifierGroups.map((group: any) => {
       const selectedOptions = selectedModifiers[group.id] || [];
       return {
         groupId: group.id,
         groupName: group.name,
-        selectedOptions: selectedOptions.map(optionId => {
-          const option = group.options.find(opt => opt.id === optionId);
+        selectedOptions: selectedOptions.map((optionId: string) => {
+          const option = group.options.find((opt: any) => opt.id === optionId);
           return option ? {
             optionId: option.id,
             optionLabel: option.label,
@@ -130,12 +150,22 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
           } : null;
         }).filter(Boolean)
       };
-    }).filter(mod => mod.selectedOptions.length > 0);
+    }).filter((mod: any) => mod.selectedOptions.length > 0);
+
+    // Get selected variant info for cart display
+    const variantInfo = item.variants && item.variants.length > 0 && selectedVariant
+      ? item.variants.find(v => v.id === selectedVariant)
+      : undefined;
 
     const cartItem: CartItem = {
       id: `${item.id}-${Date.now()}-${Math.random()}`, // Unique ID
       menuItem: item,
-      selectedSize: item.sizes ? selectedSize : undefined,
+      selectedSize: item.sizes && !item.variants?.length ? selectedSize : undefined,
+      selectedVariant: variantInfo ? {
+        id: variantInfo.id,
+        name: variantInfo.name,
+        price: variantInfo.price
+      } : undefined,
       selectedModifiers: modifiersInfo as any,
       quantity,
       unitPrice,
@@ -175,8 +205,28 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
             </div>
           )}
 
-          {/* Size Selection (if item has sizes) */}
-          {item.sizes && (
+          {/* Variant Selection (new unlimited variants system) */}
+          {item.variants && item.variants.length > 0 && (
+            <div className="space-y-3">
+              <h3 className="font-semibold text-restaurant-charcoal-black">Tamaño</h3>
+              <RadioGroup value={selectedVariant || ''} onValueChange={(value) => setSelectedVariant(value)}>
+                {item.variants.map((variant) => (
+                  <div key={variant.id} className="flex items-center space-x-2">
+                    <RadioGroupItem value={variant.id} id={variant.id} />
+                    <Label htmlFor={variant.id} className="flex-1 cursor-pointer">
+                      <div className="flex justify-between">
+                        <span>{variant.name}</span>
+                        <span className="font-bold text-restaurant-deep-burgundy">${variant.price.toFixed(2)}</span>
+                      </div>
+                    </Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+          )}
+
+          {/* Size Selection (legacy M/G sizes) */}
+          {!item.variants?.length && item.sizes && (
             <div className="space-y-3">
               <h3 className="font-semibold text-restaurant-charcoal-black">Tamaño</h3>
               <RadioGroup value={selectedSize} onValueChange={(value) => setSelectedSize(value as "medium" | "grande")}>
@@ -215,7 +265,7 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
                   value={selectedModifiers[group.id]?.[0] || ''}
                   onValueChange={(value) => handleModifierChange(group.id, value, group.type)}
                 >
-                  {group.options.map((option) => (
+                  {group.options.map((option: any) => (
                     <div key={option.id} className="flex items-center space-x-2">
                       <RadioGroupItem value={option.id} id={option.id} />
                       <Label htmlFor={option.id} className="flex-1 cursor-pointer">
@@ -231,7 +281,7 @@ export function ProductModal({ item, isOpen, onClose }: ProductModalProps) {
                 </RadioGroup>
               ) : (
                 <div className="space-y-2">
-                  {group.options.map((option) => (
+                  {group.options.map((option: any) => (
                     <div key={option.id} className="flex items-center space-x-2">
                       <Checkbox
                         id={option.id}

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "command": "https://mcp.supabase.com/mcp?project_ref=rukhbhlilajyectirtml",
+      "args": []
+    },
+    "supabase-gemini": {
+      "command": "rundll32.exe url.dll,FileProtocolHandler https://mcp.supabase.com/mcp?project_ref=rukhbhlilajyectirtml",
+      "args": []
+    }
+  }
+}

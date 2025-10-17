@@ -124,7 +124,10 @@ export function CartModal({ isOpen, onClose }: CartModalProps) {
 
                   {/* Options */}
                   <div className="mt-1 space-y-1 text-sm text-restaurant-warm-gray">
-                    {item.selectedSize && (
+                    {item.selectedVariant && (
+                      <p>Tamaño: {item.selectedVariant.name}</p>
+                    )}
+                    {item.selectedSize && !item.selectedVariant && (
                       <p>Tamaño: {item.selectedSize === "medium" ? "Mediano" : "Grande"}</p>
                     )}
                     {item.selectedMilk && (

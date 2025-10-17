@@ -6,6 +6,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is **Menú ELYSIUM**, a professional Next.js 15 restaurant menu website for a Japanese restaurant. It's built as a single-page application with a modern, dark-mode aesthetic featuring smooth scroll navigation, scroll spy functionality, and mobile-first design. The project is **database-ready** with Supabase integration and structured for future admin panel collaboration.
 
+## Current Development Status
+
+**IMPORTANT: Context Optimization Protocol**
+
+To maximize available context for actual development work:
+- **NO status files** - These consume too much context when read repeatedly
+- **User provides context** - At the start of each session, the user will tell you:
+  - What was completed in the last session
+  - Current blockers or issues
+  - What to work on next
+- **Use Gemini CLI for analysis** - When you need to analyze large files or understand existing implementations
+- **Full history** - Detailed logs are archived in `archive/PROGRESS_DETAILED.md` if needed (use Gemini CLI to read)
+
+**Current Phase:** Phase 1 - Core Admin Functionality
+**Status:** Most core features completed (Categories, Menu Items, Modifiers, Promotions, Settings)
+**Note:** User will provide specific session status and tasks
+
 ## Development Commands
 
 ```bash
@@ -28,6 +45,123 @@ npm run typecheck
 npm run genkit:dev
 npm run genkit:watch
 ```
+
+## Using Gemini CLI for Large Codebase Analysis
+
+When analyzing large codebases or multiple files that might exceed context limits, use the Gemini CLI with its massive context window. Use `gemini -p` to leverage Google Gemini's large context capacity.
+
+### File and Directory Inclusion Syntax
+
+Use the `@` syntax to include files and directories in your Gemini prompts. The paths should be relative to WHERE you run the gemini command:
+
+**Single file analysis:**
+```bash
+gemini -p "@src/main.py Explain this file's purpose and structure"
+```
+
+**Multiple files:**
+```bash
+gemini -p "@package.json @src/index.js Analyze the dependencies used in the code"
+```
+
+**Entire directory:**
+```bash
+gemini -p "@src/ Summarize the architecture of this codebase"
+```
+
+**Multiple directories:**
+```bash
+gemini -p "@src/ @tests/ Analyze test coverage for the source code"
+```
+
+**Current directory and subdirectories:**
+```bash
+gemini -p "@./ Give me an overview of this entire project"
+
+# Or use --all_files flag:
+gemini --all_files -p "Analyze the project structure and dependencies"
+```
+
+### Implementation Verification Examples
+
+**Check if a feature is implemented:**
+```bash
+gemini -p "@src/ @lib/ Has dark mode been implemented in this codebase? Show me the relevant files and functions"
+```
+
+**Verify authentication implementation:**
+```bash
+gemini -p "@src/ @middleware/ Is JWT authentication implemented? List all auth-related endpoints and middleware"
+```
+
+**Check for specific patterns:**
+```bash
+gemini -p "@src/ Are there any React hooks that handle WebSocket connections? List them with file paths"
+```
+
+**Verify error handling:**
+```bash
+gemini -p "@src/ @api/ Is proper error handling implemented for all API endpoints? Show examples of try-catch blocks"
+```
+
+**Check for rate limiting:**
+```bash
+gemini -p "@backend/ @middleware/ Is rate limiting implemented for the API? Show the implementation details"
+```
+
+**Verify caching strategy:**
+```bash
+gemini -p "@src/ @lib/ @services/ Is Redis caching implemented? List all cache-related functions and their usage"
+```
+
+**Check for specific security measures:**
+```bash
+gemini -p "@src/ @api/ Are SQL injection protections implemented? Show how user inputs are sanitized"
+```
+
+**Verify test coverage for features:**
+```bash
+gemini -p "@src/payment/ @tests/ Is the payment processing module fully tested? List all test cases"
+```
+
+### When to Use Gemini CLI
+
+Use `gemini -p` when:
+- Analyzing entire codebases or large directories
+- Comparing multiple large files
+- Need to understand project-wide patterns or architecture
+- Current context window is insufficient for the task
+- Working with files totaling more than 100KB
+- Verifying if specific features, patterns, or security measures are implemented
+- Checking for the presence of certain coding patterns across the entire codebase
+- **Instead of using Read tool on large/repeated files** - saves context
+
+### Context Management Best Practices
+
+**ALWAYS use Gemini CLI for:**
+- Reading files > 5KB repeatedly
+- Analyzing implementation patterns across multiple files
+- Understanding existing architecture before building features
+- Checking what already exists before creating new code
+
+**NEVER:**
+- Read large status/documentation files with Read tool
+- Read the same file multiple times in one session
+- Create status files that will be read repeatedly
+
+**DO:**
+- Ask user for session context at start
+- Use Gemini CLI for codebase discovery
+- Keep messages concise and focused
+- Use TodoWrite for task tracking (small context cost)
+
+### Important Notes
+
+- Paths in `@` syntax are relative to your current working directory when invoking gemini
+- The CLI will include file contents directly in the context
+- No need for `--yolo` flag for read-only analysis
+- Gemini's context window can handle entire codebases that would overflow Claude's context
+- When checking implementations, be specific about what you're looking for to get accurate results
 
 ## Architecture
 

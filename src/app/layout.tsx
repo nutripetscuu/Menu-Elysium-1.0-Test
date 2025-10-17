@@ -19,10 +19,10 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Menú ELYSIUM | Restaurante Japonés",
-  description: "Descubre nuestra exquisita selección de cocina japonesa auténtica. Sushi, ramen, parrilla y más en un ambiente elegante.",
-  keywords: ["restaurante japonés", "sushi", "ramen", "comida japonesa", "ELYSIUM"],
-  authors: [{ name: "ELYSIUM Restaurant" }],
+  title: "NoWaiter | Restaurant Management Platform",
+  description: "Modern restaurant management with QR code ordering, real-time analytics, and powerful tools. Transform your restaurant in minutes.",
+  keywords: ["restaurant management", "QR code ordering", "digital menu", "restaurant software", "NoWaiter"],
+  authors: [{ name: "NoWaiter" }],
   robots: "index, follow",
 };
 

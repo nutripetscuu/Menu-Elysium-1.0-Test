@@ -64,27 +64,45 @@ export function BannerCarousel({
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
               />
 
+              {/* Dynamic text overlay - shows custom text per image or default fallback */}
+              <div className="absolute top-1/2 left-8 -translate-y-1/2 z-10">
+                <div className="text-white">
+                  {image.title ? (
+                    // Custom promotional text
+                    <>
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 text-white drop-shadow-lg">
+                        {image.title}
+                      </h2>
+                      {image.subtitle && (
+                        <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+                          <span className="text-sm md:text-base font-medium">
+                            {image.subtitle}
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    // Default fallback text for images without custom text
+                    <>
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-script mb-3 text-white drop-shadow-lg">
+                        Elysium Café
+                      </h2>
+                      <p className="text-lg md:text-xl font-script opacity-90 drop-shadow-md mb-3">
+                        Matcha • Frappés • Artesanal
+                      </p>
+                      <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
+                        <span className="text-sm md:text-base font-medium">
+                          ¡Prueba nuestro Matcha Premium!
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </CarouselItem>
         ))}
       </CarouselContent>
-
-      {/* Static text overlay - positioned middle-left, stays over all images */}
-      <div className="absolute top-1/2 left-8 -translate-y-1/2 z-10">
-        <div className="text-white">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-script mb-3 text-white drop-shadow-lg">
-            Elysium Café
-          </h2>
-          <p className="text-lg md:text-xl font-script opacity-90 drop-shadow-md mb-3">
-            Matcha • Frappés • Artesanal
-          </p>
-          <div className="bg-white/20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block">
-            <span className="text-sm md:text-base font-medium">
-              ¡Prueba nuestro Matcha Premium!
-            </span>
-          </div>
-        </div>
-      </div>
 
       {/* Indicators */}
       {images.length > 1 && (

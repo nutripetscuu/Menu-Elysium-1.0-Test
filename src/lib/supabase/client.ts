@@ -1,5 +1,6 @@
 // Supabase client configuration
 import { createClient } from '@supabase/supabase-js';
+import { createBrowserClient } from '@supabase/ssr';
 import type { Database } from '../types/database';
 
 // Environment variables - use direct access for client-side compatibility
@@ -11,7 +12,10 @@ console.log('  - URL:', supabaseUrl);
 console.log('  - Has Anon Key:', !!supabaseAnonKey);
 console.log('  - Anon Key (first 20 chars):', supabaseAnonKey?.substring(0, 20));
 
-// Create Supabase client with proper typing
+/**
+ * Legacy client - Use createBrowserClient() instead for new code
+ * @deprecated Use createBrowserClient() for better SSR support
+ */
 export const supabase = createClient<Database>(
   supabaseUrl || 'https://placeholder.supabase.co',
   supabaseAnonKey || 'placeholder-key',
@@ -30,6 +34,20 @@ export const supabase = createClient<Database>(
     },
   }
 );
+
+/**
+ * Creates a browser-safe Supabase client for client components
+ * Use this in all client-side code (pages, components with 'use client')
+ *
+ * SECURITY: This uses the ANON KEY (public, safe for browser)
+ * NEVER use admin-client.ts in client components!
+ */
+export function createBrowserSupabaseClient() {
+  return createBrowserClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+}
 
 // Export direct helper function for client-side compatibility
 export const isSupabaseClientConfigured = () => {

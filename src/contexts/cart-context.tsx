@@ -6,7 +6,8 @@ import type { MenuItem } from "@/lib/types/database";
 export interface CartItem {
   id: string;
   menuItem: MenuItem;
-  selectedSize?: "medium" | "grande";
+  selectedSize?: "medium" | "grande"; // For legacy M/G sizes
+  selectedVariant?: { id: string; name: string; price: number }; // For new variants system
   selectedMilk?: string;
   selectedSugar?: string;
   selectedFlavor?: string;
@@ -49,6 +50,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const existingItemIndex = prevItems.findIndex(item =>
         item.menuItem.id === newItem.menuItem.id &&
         item.selectedSize === newItem.selectedSize &&
+        item.selectedVariant?.id === newItem.selectedVariant?.id &&
         JSON.stringify(item.selectedModifiers || []) === JSON.stringify(newItem.selectedModifiers || [])
       );
 

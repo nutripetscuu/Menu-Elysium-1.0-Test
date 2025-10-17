@@ -7,14 +7,14 @@ export const MILK_TYPES: ModifierGroup = {
   id: "milk_types",
   name: "Tipo de leche",
   type: "single",
-  required: true,
+  required: true, position: 0,
   minSelections: 1,
   maxSelections: 1,
   options: [
-    { id: "milk_entera", label: "Entera", priceModifier: 0, isDefault: true },
-    { id: "milk_deslactosada", label: "Deslactosada", priceModifier: 0, isDefault: false },
-    { id: "milk_coco", label: "Coco", priceModifier: 10, isDefault: false },
-    { id: "milk_almendra", label: "Almendra", priceModifier: 10, isDefault: false },
+    { id: "milk_entera", label: "Entera", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "milk_deslactosada", label: "Deslactosada", priceModifier: 0, isDefault: false, position: 0 },
+    { id: "milk_coco", label: "Coco", priceModifier: 10, isDefault: false, position: 0 },
+    { id: "milk_almendra", label: "Almendra", priceModifier: 10, isDefault: false, position: 0 },
   ],
 };
 
@@ -23,14 +23,14 @@ export const MILK_TO_ACCOMPANY: ModifierGroup = {
   id: "milk_to_accompany",
   name: "Tipo de leche para acompañar",
   type: "single",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 1,
   options: [
-    { id: "milk_entera", label: "Entera", priceModifier: 0, isDefault: true },
-    { id: "milk_deslactosada", label: "Deslactosada", priceModifier: 0, isDefault: false },
-    { id: "milk_coco", label: "Coco", priceModifier: 10, isDefault: false },
-    { id: "milk_almendra", label: "Almendra", priceModifier: 10, isDefault: false },
+    { id: "milk_entera", label: "Entera", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "milk_deslactosada", label: "Deslactosada", priceModifier: 0, isDefault: false, position: 0 },
+    { id: "milk_coco", label: "Coco", priceModifier: 10, isDefault: false, position: 0 },
+    { id: "milk_almendra", label: "Almendra", priceModifier: 10, isDefault: false, position: 0 },
   ],
 };
 
@@ -39,12 +39,12 @@ export const ESSENCES: ModifierGroup = {
   id: "essences",
   name: "Esencia",
   type: "single",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 1,
   options: [
-    { id: "essence_caramelo", label: "Caramelo", priceModifier: 0, isDefault: false },
-    { id: "essence_vainilla", label: "Vainilla", priceModifier: 0, isDefault: false },
+    { id: "essence_caramelo", label: "Caramelo", priceModifier: 0, isDefault: false, position: 0 },
+    { id: "essence_vainilla", label: "Vainilla", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -53,11 +53,11 @@ export const CINNAMON_TOPPING: ModifierGroup = {
   id: "cinnamon_topping",
   name: "Topping",
   type: "boolean",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 1,
   options: [
-    { id: "cinnamon_yes", label: "Canela", priceModifier: 0, isDefault: false },
+    { id: "cinnamon_yes", label: "Canela", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -66,13 +66,13 @@ export const TEA_TYPES: ModifierGroup = {
   id: "tea_types",
   name: "Tipo de té",
   type: "single",
-  required: true,
+  required: true, position: 0,
   minSelections: 1,
   maxSelections: 1,
   options: [
-    { id: "tea_manzanilla", label: "Manzanilla", priceModifier: 0, isDefault: true },
-    { id: "tea_verde", label: "Verde", priceModifier: 0, isDefault: false },
-    { id: "tea_menta", label: "Menta", priceModifier: 0, isDefault: false },
+    { id: "tea_manzanilla", label: "Manzanilla", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "tea_verde", label: "Verde", priceModifier: 0, isDefault: false, position: 0 },
+    { id: "tea_menta", label: "Menta", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -81,12 +81,12 @@ export const TEA_PRESENTATION: ModifierGroup = {
   id: "tea_presentation",
   name: "Presentación",
   type: "single",
-  required: true,
+  required: true, position: 0,
   minSelections: 1,
   maxSelections: 1,
   options: [
-    { id: "presentation_hot", label: "Caliente", priceModifier: 0, isDefault: true },
-    { id: "presentation_iced", label: "En las rocas", priceModifier: 0, isDefault: false },
+    { id: "presentation_hot", label: "Caliente", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "presentation_iced", label: "En las rocas", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -95,12 +95,12 @@ export const FRAPPE_SIZES: ModifierGroup = {
   id: "frappe_sizes",
   name: "Tamaño",
   type: "single",
-  required: true,
+  required: true, position: 0,
   minSelections: 1,
   maxSelections: 1,
   options: [
-    { id: "size_medium", label: "Mediano", priceModifier: 0, isDefault: true },
-    { id: "size_grande", label: "Grande", priceModifier: 0, isDefault: false },
+    { id: "size_medium", label: "Mediano", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "size_grande", label: "Grande", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -109,12 +109,12 @@ export const WHIPPED_CREAM: ModifierGroup = {
   id: "whipped_cream",
   name: "Decoración",
   type: "single",
-  required: true,
+  required: true, position: 0,
   minSelections: 1,
   maxSelections: 1,
   options: [
-    { id: "cream_yes", label: "Con crema batida", priceModifier: 0, isDefault: true },
-    { id: "cream_no", label: "Sin crema batida", priceModifier: 0, isDefault: false },
+    { id: "cream_yes", label: "Con crema batida", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "cream_no", label: "Sin crema batida", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -123,12 +123,12 @@ export const TAPIOCA_TOPPINGS: ModifierGroup = {
   id: "tapioca_toppings",
   name: "Toppings",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 2,
   options: [
-    { id: "tapioca_fresa", label: "Tapioca fresa", priceModifier: 20, isDefault: false },
-    { id: "tapioca_tradicional", label: "Tapioca tradicional", priceModifier: 20, isDefault: false },
+    { id: "tapioca_fresa", label: "Tapioca fresa", priceModifier: 20, isDefault: false, position: 0 },
+    { id: "tapioca_tradicional", label: "Tapioca tradicional", priceModifier: 20, isDefault: false, position: 0 },
   ],
 };
 
@@ -137,11 +137,11 @@ export const TAPIOCA_FRESCOS: ModifierGroup = {
   id: "tapioca_frescos",
   name: "Extras",
   type: "boolean",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 1,
   options: [
-    { id: "tapioca_fresa_single", label: "Tapioca de fresa", priceModifier: 20, isDefault: false },
+    { id: "tapioca_fresa_single", label: "Tapioca de fresa", priceModifier: 20, isDefault: false, position: 0 },
   ],
 };
 
@@ -150,13 +150,13 @@ export const SAUCES: ModifierGroup = {
   id: "sauces",
   name: "Salsas",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 3,
   options: [
-    { id: "sauce_macha", label: "Macha", priceModifier: 0, isDefault: false },
-    { id: "sauce_chipotle", label: "Chipotle", priceModifier: 0, isDefault: false },
-    { id: "sauce_casa", label: "De la casa", priceModifier: 0, isDefault: false },
+    { id: "sauce_macha", label: "Macha", priceModifier: 0, isDefault: false, position: 0 },
+    { id: "sauce_chipotle", label: "Chipotle", priceModifier: 0, isDefault: false, position: 0 },
+    { id: "sauce_casa", label: "De la casa", priceModifier: 0, isDefault: false, position: 0 },
   ],
 };
 
@@ -167,14 +167,14 @@ export const OLIMPO_INGREDIENTS: ModifierGroup = {
   id: "olimpo_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 4,
   options: [
-    { id: "ing_bistec", label: "Bistec", priceModifier: 0, isDefault: true },
-    { id: "ing_queso", label: "Queso", priceModifier: 0, isDefault: true },
-    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true },
-    { id: "ing_pimientos", label: "Pimientos salteados", priceModifier: 0, isDefault: true },
+    { id: "ing_bistec", label: "Bistec", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_queso", label: "Queso", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_pimientos", label: "Pimientos salteados", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -183,14 +183,14 @@ export const ELISEO_INGREDIENTS: ModifierGroup = {
   id: "eliseo_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 4,
   options: [
-    { id: "ing_pollo", label: "Pollo", priceModifier: 0, isDefault: true },
-    { id: "ing_queso", label: "Queso", priceModifier: 0, isDefault: true },
-    { id: "ing_tocino", label: "Tocino", priceModifier: 0, isDefault: true },
-    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true },
+    { id: "ing_pollo", label: "Pollo", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_queso", label: "Queso", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_tocino", label: "Tocino", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -199,13 +199,13 @@ export const CELESTE_INGREDIENTS: ModifierGroup = {
   id: "celeste_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 3,
   options: [
-    { id: "ing_jamon", label: "Jamón", priceModifier: 0, isDefault: true },
-    { id: "ing_queso", label: "Queso", priceModifier: 0, isDefault: true },
-    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true },
+    { id: "ing_jamon", label: "Jamón", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_queso", label: "Queso", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -214,15 +214,15 @@ export const CAESAR_INGREDIENTS: ModifierGroup = {
   id: "caesar_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 5,
   options: [
-    { id: "ing_lechuga_orejona", label: "Lechuga orejona", priceModifier: 0, isDefault: true },
-    { id: "ing_pollo", label: "Pollo", priceModifier: 0, isDefault: true },
-    { id: "ing_queso_parmesano", label: "Queso parmesano", priceModifier: 0, isDefault: true },
-    { id: "ing_aderezo_caesar", label: "Aderezo caesar", priceModifier: 0, isDefault: true },
-    { id: "ing_pan", label: "Pan", priceModifier: 0, isDefault: true },
+    { id: "ing_lechuga_orejona", label: "Lechuga orejona", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_pollo", label: "Pollo", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_queso_parmesano", label: "Queso parmesano", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_aderezo_caesar", label: "Aderezo caesar", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_pan", label: "Pan", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -231,17 +231,17 @@ export const ELYSIUM_INGREDIENTS: ModifierGroup = {
   id: "elysium_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 7,
   options: [
-    { id: "ing_lechuga_orejona", label: "Lechuga orejona", priceModifier: 0, isDefault: true },
-    { id: "ing_espinaca", label: "Espinaca", priceModifier: 0, isDefault: true },
-    { id: "ing_fresa", label: "Fresa", priceModifier: 0, isDefault: true },
-    { id: "ing_arandanos", label: "Arándanos", priceModifier: 0, isDefault: true },
-    { id: "ing_queso_cabra", label: "Queso de cabra", priceModifier: 0, isDefault: true },
-    { id: "ing_nuez", label: "Nuez", priceModifier: 0, isDefault: true },
-    { id: "ing_vinagreta", label: "Vinagreta de la casa", priceModifier: 0, isDefault: true },
+    { id: "ing_lechuga_orejona", label: "Lechuga orejona", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_espinaca", label: "Espinaca", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_fresa", label: "Fresa", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_arandanos", label: "Arándanos", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_queso_cabra", label: "Queso de cabra", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_nuez", label: "Nuez", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_vinagreta", label: "Vinagreta de la casa", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -250,15 +250,15 @@ export const POLLO_TOAST_INGREDIENTS: ModifierGroup = {
   id: "pollo_toast_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 5,
   options: [
-    { id: "ing_pollo", label: "Pollo", priceModifier: 0, isDefault: true },
-    { id: "ing_pimientos", label: "Pimientos salteados", priceModifier: 0, isDefault: true },
-    { id: "ing_salsa_casa", label: "Salsa de la casa", priceModifier: 0, isDefault: true },
-    { id: "ing_lechuga", label: "Lechuga fresca", priceModifier: 0, isDefault: true },
-    { id: "ing_tomates_cherry", label: "Tomates cherry", priceModifier: 0, isDefault: true },
+    { id: "ing_pollo", label: "Pollo", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_pimientos", label: "Pimientos salteados", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_salsa_casa", label: "Salsa de la casa", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_lechuga", label: "Lechuga fresca", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_tomates_cherry", label: "Tomates cherry", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -267,16 +267,16 @@ export const AVO_TOAST_INGREDIENTS: ModifierGroup = {
   id: "avo_toast_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 6,
   options: [
-    { id: "ing_jocoque", label: "Jocoque", priceModifier: 0, isDefault: true },
-    { id: "ing_aguacate", label: "Aguacate fresco", priceModifier: 0, isDefault: true },
-    { id: "ing_ajonjoli", label: "Ajonjolí", priceModifier: 0, isDefault: true },
-    { id: "ing_tomates_cherry_salteados", label: "Tomates cherry salteados", priceModifier: 0, isDefault: true },
-    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true },
-    { id: "ing_tomates_cherry", label: "Tomates cherry frescos", priceModifier: 0, isDefault: true },
+    { id: "ing_jocoque", label: "Jocoque", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_aguacate", label: "Aguacate fresco", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_ajonjoli", label: "Ajonjolí", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_tomates_cherry_salteados", label: "Tomates cherry salteados", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_lechuga", label: "Lechuga", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_tomates_cherry", label: "Tomates cherry frescos", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -285,17 +285,17 @@ export const PERA_TOAST_INGREDIENTS: ModifierGroup = {
   id: "pera_toast_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 7,
   options: [
-    { id: "ing_queso_crema", label: "Queso crema", priceModifier: 0, isDefault: true },
-    { id: "ing_pera", label: "Láminas de pera", priceModifier: 0, isDefault: true },
-    { id: "ing_queso_panela", label: "Queso panela", priceModifier: 0, isDefault: true },
-    { id: "ing_nueces", label: "Nueces", priceModifier: 0, isDefault: true },
-    { id: "ing_miel", label: "Miel", priceModifier: 0, isDefault: true },
-    { id: "ing_fresas", label: "Fresas", priceModifier: 0, isDefault: true },
-    { id: "ing_moras", label: "Moras", priceModifier: 0, isDefault: true },
+    { id: "ing_queso_crema", label: "Queso crema", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_pera", label: "Láminas de pera", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_queso_panela", label: "Queso panela", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_nueces", label: "Nueces", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_miel", label: "Miel", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_fresas", label: "Fresas", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_moras", label: "Moras", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -304,13 +304,13 @@ export const PAPAS_CASA_INGREDIENTS: ModifierGroup = {
   id: "papas_casa_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 3,
   options: [
-    { id: "ing_camote", label: "Camote", priceModifier: 0, isDefault: true },
-    { id: "ing_papas_fritas", label: "Papas fritas", priceModifier: 0, isDefault: true },
-    { id: "ing_catsup_chile", label: "Salsa catsup con chile quebrado", priceModifier: 0, isDefault: true },
+    { id: "ing_camote", label: "Camote", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_papas_fritas", label: "Papas fritas", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_catsup_chile", label: "Salsa catsup con chile quebrado", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -319,15 +319,15 @@ export const PAPAS_PREP_INGREDIENTS: ModifierGroup = {
   id: "papas_prep_ingredients",
   name: "Ingredientes (puedes excluir lo que no desees)",
   type: "multiple",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 5,
   options: [
-    { id: "ing_salsa_picante", label: "Salsa picante", priceModifier: 0, isDefault: true },
-    { id: "ing_jugo_maggi", label: "Jugo maggi", priceModifier: 0, isDefault: true },
-    { id: "ing_limon", label: "Limón", priceModifier: 0, isDefault: true },
-    { id: "ing_rielitos", label: "Rielitos", priceModifier: 0, isDefault: true },
-    { id: "ing_cacahuates", label: "Cacahuates", priceModifier: 0, isDefault: true },
+    { id: "ing_salsa_picante", label: "Salsa picante", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_jugo_maggi", label: "Jugo maggi", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_limon", label: "Limón", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_rielitos", label: "Rielitos", priceModifier: 0, isDefault: true, position: 0 },
+    { id: "ing_cacahuates", label: "Cacahuates", priceModifier: 0, isDefault: true, position: 0 },
   ],
 };
 
@@ -336,11 +336,11 @@ export const ADD_EGG: ModifierGroup = {
   id: "add_egg",
   name: "Extras",
   type: "boolean",
-  required: false,
+  required: true, position: 0,
   minSelections: 0,
   maxSelections: 1,
   options: [
-    { id: "extra_egg", label: "Agrega huevo", priceModifier: 15, isDefault: false },
+    { id: "extra_egg", label: "Agrega huevo", priceModifier: 15, isDefault: false, position: 0 },
   ],
 };
 

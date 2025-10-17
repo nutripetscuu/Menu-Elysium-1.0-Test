@@ -10,9 +10,18 @@
       "Bash(powershell:*)",
       "Bash(dir \"C:\\Users\\ElBoss\\Desktop\\Elysium Test1\\studio\\public\\images\")",
       "Bash(npm run build:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "mcp__supabase__execute_sql",
+      "Bash(dir:*)",
+      "mcp__supabase__list_tables",
+      "Bash(gemini:*)",
+      "mcp__supabase__apply_migration"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
 }
