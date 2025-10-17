@@ -11,10 +11,10 @@ export default function MarketingLayout({
     <div className="flex min-h-screen flex-col">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-[#0B2C4D]/20 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/90">
-        <div className="container max-w-screen-2xl px-6">
-          <div className="grid grid-cols-[256px_1fr_256px] h-20 items-center gap-8">
+        <div className="container max-w-screen-2xl mx-auto px-6">
+          <div className="flex h-20 items-center justify-between gap-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center flex-shrink-0">
               <Image
                 src="/branding/nowaiter-logo.png"
                 alt="NoWaiter - Restaurant Management Made Simple"
@@ -27,7 +27,7 @@ export default function MarketingLayout({
             </Link>
 
             {/* Navigation - Centered */}
-            <nav className="hidden md:flex items-center justify-center space-x-8 text-base font-medium">
+            <nav className="hidden md:flex items-center justify-center space-x-8 text-base font-medium flex-1">
               <Link
                 href="/features"
                 className="transition-colors hover:text-[#0B2C4D] text-[#333333]/70 font-medium leading-none"
@@ -49,7 +49,7 @@ export default function MarketingLayout({
             </nav>
 
             {/* CTA Buttons */}
-            <div className="flex items-center justify-end space-x-4">
+            <div className="flex items-center justify-end space-x-4 flex-shrink-0">
               <Link href="/login">
                 <Button
                   variant="ghost"
