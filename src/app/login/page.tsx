@@ -24,19 +24,6 @@ function LoginForm() {
   const errorParam = searchParams.get('error');
 
   useEffect(() => {
-    // Force favicon update
-    const updateFavicon = () => {
-      const links = document.querySelectorAll("link[rel*='icon']");
-      links.forEach(link => link.remove());
-
-      const link = document.createElement('link');
-      link.rel = 'icon';
-      link.type = 'image/svg+xml';
-      link.href = '/favicon.svg?v=' + Date.now();
-      document.head.appendChild(link);
-    };
-    updateFavicon();
-
     // Show error from URL params (e.g., unauthorized)
     if (errorParam === 'unauthorized') {
       setError('You do not have admin access to this application.');
