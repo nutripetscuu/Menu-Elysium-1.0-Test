@@ -161,7 +161,22 @@ export async function getMenuUrl(): Promise<string> {
   }
 
   // Build menu URL with restaurant subdomain
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:9002';
+  // Priority:
+  // 1. NEXT_PUBLIC_SITE_URL (set in env vars)
+  // 2. VERCEL_URL (auto-set by Vercel)
+  // 3. Localhost fallback for development
+  let baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
+
+  if (!baseUrl && process.env.VERCEL_URL) {
+    // Vercel automatically sets VERCEL_URL, use it with https
+    baseUrl = `https://${process.env.VERCEL_URL}`;
+  }
+
+  if (!baseUrl) {
+    // Fallback to localhost for development
+    baseUrl = 'http://localhost:9002';
+  }
+
   const menuUrl = `${baseUrl}/menu?restaurant=${restaurant.subdomain}`;
 
   return menuUrl;
