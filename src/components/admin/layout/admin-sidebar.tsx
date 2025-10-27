@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -13,7 +14,10 @@ import {
   Settings,
   Eye,
   Coffee,
+  Download,
 } from 'lucide-react';
+import { generateQRCodeDataURL, downloadQRCodeClient } from '@/lib/utils/download-qr-code-client';
+import { getMenuUrl, getRestaurantSubdomain } from '@/lib/actions/settings';
 
 const navItems = [
   {
@@ -57,6 +61,43 @@ const navItems = [
 export function AdminSidebar() {
   const pathname = usePathname();
   const { slug } = useRestaurantSlug();
+  const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
+  const [menuUrl, setMenuUrl] = useState<string>('');
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  // Load QR code on mount
+  useEffect(() => {
+    const loadQRCode = async () => {
+      try {
+        const url = await getMenuUrl();
+        setMenuUrl(url);
+        const qr = await generateQRCodeDataURL(url);
+        setQrCodeUrl(qr);
+      } catch (error) {
+        console.error('Failed to generate QR code:', error);
+      }
+    };
+
+    loadQRCode();
+  }, []);
+
+  // Handle QR code download
+  const handleDownloadQR = async () => {
+    if (isDownloading) return;
+
+    setIsDownloading(true);
+    try {
+      const [url, subdomain] = await Promise.all([
+        getMenuUrl(),
+        getRestaurantSubdomain()
+      ]);
+      await downloadQRCodeClient(url, subdomain);
+    } catch (error) {
+      console.error('Failed to download QR code:', error);
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   return (
     <aside className="w-64 border-r bg-muted/10 h-screen overflow-y-auto sticky top-0">
@@ -123,6 +164,30 @@ export function AdminSidebar() {
           <span>View Public Menu</span>
         </Link>
       </div>
+
+      {/* QR Code Quick Access */}
+      {qrCodeUrl && (
+        <div className="p-4 border-t bg-muted/20">
+          <div className="text-xs font-medium text-muted-foreground mb-3">
+            Menu QR Code
+          </div>
+          <div className="bg-white rounded-lg p-3 mb-3 flex justify-center">
+            <img
+              src={qrCodeUrl}
+              alt="Menu QR Code"
+              className="w-32 h-32"
+            />
+          </div>
+          <button
+            onClick={handleDownloadQR}
+            disabled={isDownloading}
+            className="w-full flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <Download className="h-4 w-4" />
+            <span>{isDownloading ? 'Downloading...' : 'Download QR'}</span>
+          </button>
+        </div>
+      )}
     </aside>
   );
 }

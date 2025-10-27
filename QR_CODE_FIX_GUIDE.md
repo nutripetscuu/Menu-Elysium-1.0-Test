@@ -18,22 +18,30 @@ The QR codes were pointing to `http://localhost:9002` instead of your production
 
 ## How to Fix on Vercel (CRITICAL)
 
-To fix the QR codes on your Vercel deployment, you need to set the environment variable:
+**IMPORTANT:** The `VERCEL_URL` variable points to preview deployment URLs (with hashes), which require authentication. You MUST set `NEXT_PUBLIC_SITE_URL` manually.
 
-### Option 1: Set Your Custom Domain (Recommended)
-1. Go to your Vercel project dashboard
-2. Navigate to **Settings** → **Environment Variables**
-3. Add a new environment variable:
+### Required Setup (MUST DO):
+1. Go to your Vercel project dashboard (https://vercel.com)
+2. Select your project: **nowaiter1-0**
+3. Navigate to **Settings** → **Environment Variables**
+4. Add a new environment variable:
    - **Name:** `NEXT_PUBLIC_SITE_URL`
-   - **Value:** `https://your-custom-domain.com` (your actual production domain)
-   - **Environment:** Select all (Production, Preview, Development)
-4. Click **Save**
-5. **Redeploy** your application for changes to take effect
+   - **Value:** Choose one of these:
+     - If you have a custom domain: `https://your-custom-domain.com`
+     - If using Vercel domain: `https://nowaiter1-0.vercel.app` (or your actual production URL)
+   - **Environment:** Select **Production** only (not Preview or Development)
+5. Click **Save**
+6. Go to **Deployments** tab
+7. Click the **"..."** menu on your latest deployment
+8. Click **"Redeploy"** to trigger a new deployment with the environment variable
 
-### Option 2: Use Vercel's Auto-Generated URL
-If you don't set `NEXT_PUBLIC_SITE_URL`, the code will automatically use Vercel's `VERCEL_URL` environment variable, which Vercel sets automatically to your project's URL (e.g., `your-project.vercel.app`).
+### Finding Your Production URL:
+1. Go to your Vercel project dashboard
+2. Look at the top for "Domains" section
+3. Your main production domain will be listed (usually ends with `.vercel.app`)
+4. Use that exact URL for `NEXT_PUBLIC_SITE_URL`
 
-**However**, if you have a custom domain, you MUST use Option 1.
+**Note:** Preview deployments (URLs with hashes like `project-hash-username.vercel.app`) should NOT be used for QR codes.
 
 ## Testing the Fix
 
