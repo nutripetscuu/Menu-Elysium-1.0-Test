@@ -1,7 +1,7 @@
 // Supabase client configuration
 import { createClient } from '@supabase/supabase-js';
 import { createBrowserClient } from '@supabase/ssr';
-import type { Database } from '../types/database';
+import type { Database } from '../types/database.generated';
 
 // Environment variables - use direct access for client-side compatibility
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;

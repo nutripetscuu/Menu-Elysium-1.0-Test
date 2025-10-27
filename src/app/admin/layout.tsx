@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import { AuthProvider, useAuth } from '@/lib/hooks/admin/use-auth';
 import { AdminSidebar } from '@/components/admin/layout/admin-sidebar';
 import { AdminHeader } from '@/components/admin/layout/admin-header';
@@ -41,29 +40,6 @@ function AdminLayoutContent({ children }: { children: React.ReactNode }) {
 }
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    // Force favicon update for admin pages - safer approach
-    const existingLinks = document.querySelectorAll("link[rel*='icon']");
-    const hasCorrectFavicon = Array.from(existingLinks).some(link =>
-      (link as HTMLLinkElement).href.includes('/favicon.svg')
-    );
-
-    if (!hasCorrectFavicon) {
-      // Only remove and add if needed
-      existingLinks.forEach(link => {
-        if (link.parentNode) {
-          link.parentNode.removeChild(link);
-        }
-      });
-
-      const link = document.createElement('link');
-      link.rel = 'icon';
-      link.type = 'image/svg+xml';
-      link.href = '/favicon.svg';
-      document.head.appendChild(link);
-    }
-  }, []);
-
   return (
     <AuthProvider>
       <LivePreviewProvider>

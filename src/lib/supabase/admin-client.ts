@@ -1,7 +1,7 @@
 // Admin Supabase client with SERVICE ROLE KEY for server-side admin operations
 // WARNING: This client bypasses RLS and should ONLY be used in API routes/server actions
 import { createClient } from '@supabase/supabase-js';
-import type { Database } from '../types/database';
+import type { Database } from '../types/database.generated';
 
 /**
  * Creates an admin client with service role privileges

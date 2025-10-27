@@ -55,14 +55,15 @@ export function LiveMenuPreview({ restaurantId, refreshKey = 0 }: LiveMenuPrevie
             </div>
           )}
 
-          {/* Iframe - no sandbox restrictions for localhost */}
-          <iframe
-            key={iframeKey}
-            src={menuUrl}
-            className="w-full h-full border-0"
-            title="Live Menu Preview"
-            onLoad={handleIframeLoad}
-          />
+          {/* Iframe - wrapped in container div to prevent React fiber errors */}
+          <div key={iframeKey} className="w-full h-full">
+            <iframe
+              src={menuUrl}
+              className="w-full h-full border-0"
+              title="Live Menu Preview"
+              onLoad={handleIframeLoad}
+            />
+          </div>
 
           {/* Floating action buttons */}
           <div className="absolute bottom-4 right-4 flex flex-col gap-2">

@@ -56,9 +56,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           .update({ last_login: new Date().toISOString() })
           .eq('id', userId);
 
+        // Handle promise properly - await or add catch handler
         updatePromise.then(() => {
           console.log('[AUTH PROVIDER] last_login updated');
-        }).catch((err: any) => {
+        }, (err: any) => {
           console.warn('[AUTH PROVIDER] Failed to update last_login:', err);
         });
       } catch (err) {
@@ -152,7 +153,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         setUser(data.user);
-        setAdminUser(adminData);
+        setAdminUser(adminData as any);
       }
 
       return { error: null };

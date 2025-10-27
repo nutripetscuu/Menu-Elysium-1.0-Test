@@ -11,7 +11,6 @@ import {
   Sliders,
   Image,
   Settings,
-  Users,
   Eye,
   Coffee,
 } from 'lucide-react';
@@ -48,22 +47,10 @@ const navItems = [
     description: 'Carousel images',
   },
   {
-    href: '/admin/visual-editor',
-    icon: Eye,
-    label: 'Visual Editor',
-    description: 'Live menu preview',
-  },
-  {
     href: '/admin/settings',
     icon: Settings,
     label: 'Settings',
     description: 'Restaurant configuration',
-  },
-  {
-    href: '/admin/users',
-    icon: Users,
-    label: 'Admin Users',
-    description: 'Manage admins',
   },
 ];
 

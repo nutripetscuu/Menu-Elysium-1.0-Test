@@ -84,8 +84,12 @@ export async function POST(request: NextRequest) {
           stripe_subscription_id: subscription.id,
           plan: subscription.metadata?.plan || 'professional',
           status: subscription.status,
-          current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
-          current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+          current_period_start: (subscription as any).current_period_start
+            ? new Date((subscription as any).current_period_start * 1000).toISOString()
+            : null,
+          current_period_end: (subscription as any).current_period_end
+            ? new Date((subscription as any).current_period_end * 1000).toISOString()
+            : null,
           cancel_at_period_end: subscription.cancel_at_period_end,
           trial_ends_at: trialEnd,
         });
@@ -110,32 +114,34 @@ export async function POST(request: NextRequest) {
 
       case 'invoice.payment_succeeded': {
         const invoice = event.data.object as Stripe.Invoice;
+        const subscriptionId = (invoice as any).subscription;
 
-        if (invoice.subscription) {
+        if (subscriptionId) {
           await supabase
             .from('subscriptions')
             .update({
               status: 'active',
             })
-            .eq('stripe_subscription_id', invoice.subscription as string);
+            .eq('stripe_subscription_id', subscriptionId as string);
 
-          console.log('Payment succeeded for subscription:', invoice.subscription);
+          console.log('Payment succeeded for subscription:', subscriptionId);
         }
         break;
       }
 
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice;
+        const subscriptionId = (invoice as any).subscription;
 
-        if (invoice.subscription) {
+        if (subscriptionId) {
           await supabase
             .from('subscriptions')
             .update({
               status: 'past_due',
             })
-            .eq('stripe_subscription_id', invoice.subscription as string);
+            .eq('stripe_subscription_id', subscriptionId as string);
 
-          console.log('Payment failed for subscription:', invoice.subscription);
+          console.log('Payment failed for subscription:', subscriptionId);
         }
         break;
       }

@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { LogOut, User, Settings, Loader2 } from 'lucide-react';
+import { LogOut, Settings, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 export function AdminHeader() {
@@ -106,12 +106,6 @@ export function AdminHeader() {
                   <a href="/admin/settings" className="cursor-pointer">
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Settings</span>
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <a href="/admin/users" className="cursor-pointer">
-                    <User className="mr-2 h-4 w-4" />
-                    <span>Manage Admins</span>
                   </a>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
